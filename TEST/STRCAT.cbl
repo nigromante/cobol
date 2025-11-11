@@ -6,7 +6,7 @@
           
        WORKING-STORAGE SECTION.
            
-           INCLUDE 000_DEFINES.
+           INCLUDE GLOBAL_DEF.
            INCLUDE TRACE_DEF.
            INCLUDE STRCAT_DEF.
 
