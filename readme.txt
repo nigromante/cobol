@@ -1,6 +1,12 @@
 Compile:
-  make input=TARGET [clean|compile|run|all]
 
+  Release:
+
+      make input=TARGET [clean|compile|run|all]
+
+  Debug:
+
+      make -f Makefile.test input=TARGET [clean|compile|run|all]
 
 LIBS:
   000 : basic defines 
