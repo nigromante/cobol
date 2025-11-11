@@ -7,9 +7,9 @@
        WORKING-STORAGE SECTION.
            
            INCLUDE 000_DEFINES.
-           INCLUDE 001_DEFINES.
-           INCLUDE 300_DEFINES.
-           INCLUDE 301_DEFINES.
+           INCLUDE TRACE_DEF.
+           INCLUDE STRCAT_DEF.
+           INCLUDE NUM2STR_DEF.
 
 
        PROCEDURE DIVISION.
@@ -19,8 +19,8 @@
 
            STOP RUN.
 
-           INCLUDE 001_CODE.
-           INCLUDE 300_CODE.
-           INCLUDE 301_CODE.
+           INCLUDE TRACE_CODE.
+           INCLUDE STRCAT_CODE.
+           INCLUDE NUM2STR_CODE.
 
-           INCLUDE 301_TEST.
+           INCLUDE NUM2STR_TEST.
