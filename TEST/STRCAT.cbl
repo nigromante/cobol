@@ -1,0 +1,23 @@
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. STRCAT.
+       AUTHOR. JULIAN VIDAL.
+       DATA DIVISION.
+          
+       WORKING-STORAGE SECTION.
+           
+           INCLUDE 000_DEFINES.
+           INCLUDE 001_DEFINES.
+           INCLUDE 300_DEFINES.
+
+
+       PROCEDURE DIVISION.
+
+           PERFORM   300-TEST.
+
+           STOP RUN.
+
+           INCLUDE 001_CODE.
+           INCLUDE 300_CODE.
+
+           INCLUDE 300_TEST.
