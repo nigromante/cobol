@@ -14,3 +14,8 @@
            77 W301-Decenas-1   OCCURS 10 TIMES PIC X(20).
 
            77 W301-Unidades    OCCURS 10  TIMES PIC X(20).
+
+      * tests support
+           77 W301T-Idx   PIC 999 VALUE 1.
+           77 W301T-Nums  OCCURS 100 TIMES  PIC   9(12).
+

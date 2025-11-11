@@ -2,7 +2,7 @@
 EXE:=./BUILD/$(input)
 SRC:=./TEST/$(input).cbl
 #ARGS:=-x -I ./LIB
-ARGS:=-v -x -I ./LIB
+ARGS:=-v -x -I ./LIB -I ./LIBT
 
 
 $(EXE): $(SRC)
