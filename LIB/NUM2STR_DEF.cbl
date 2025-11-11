@@ -5,9 +5,9 @@
            77 W301-Idx2 PIC  999.
            77 W301-Idx3 PIC  999999 VALUE 0.
 
-           77 U  PIC 9.
-           77 D  PIC 9. 
-           77 C  PIC 9.
+           77 W301-U  PIC 9.
+           77 W301-D  PIC 9. 
+           77 W301-C  PIC 9.
 
            77 W301-Centenas    OCCURS 10 TIMES PIC X(20).
            77 W301-Decenas     OCCURS 10 TIMES PIC X(20).

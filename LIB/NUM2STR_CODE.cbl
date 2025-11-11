@@ -46,38 +46,38 @@
 
        301-CDU.
 
-           IF C > 0
-             IF C = 1
-               IF D = 0 AND U = 0
-                 MOVE "CIEN _" TO WS-In
+           IF W301-C > 0
+             IF W301-C = 1
+               IF W301-D= 0 AND W301-U = 0
+                 MOVE "CIEN _" TO W300-In
                  PERFORM 300-COPY-STRING
                ELSE
-                 MOVE "CIENTO _" TO WS-In
+                 MOVE "CIENTO _" TO W300-In
                  PERFORM 300-COPY-STRING
                END-IF
              ELSE
-               MOVE W301-Centenas(C) TO WS-In
+               MOVE W301-Centenas(W301-C) TO W300-In
                PERFORM 300-COPY-STRING
              END-IF
            END-IF.
 
-           IF D > 0
-             IF D = 1 AND U <> 0
-               MOVE W301-Decenas-1(U)   TO  WS-In
+           IF W301-D > 0
+             IF W301-D = 1 AND W301-U <> 0
+               MOVE W301-Decenas-1(W301-U)   TO  W300-In
                PERFORM 300-COPY-STRING
-               MOVE 0 TO U
+               MOVE 0 TO W301-U
              ELSE
-               MOVE W301-Decenas(D) TO WS-In
+               MOVE W301-Decenas(W301-D) TO W300-In
                PERFORM 300-COPY-STRING
-               IF U > 0
-                 MOVE "Y _" TO WS-In
+               IF W301-U > 0
+                 MOVE "Y _" TO W300-In
                  PERFORM 300-COPY-STRING
                END-IF
              END-IF
            END-IF.
 
-           IF U > 0
-             MOVE W301-Unidades(U)   TO  WS-In
+           IF W301-U > 0
+             MOVE W301-Unidades(W301-U)   TO  W300-In
              PERFORM 300-COPY-STRING
            END-IF.
 
@@ -87,13 +87,13 @@
 
            COMPUTE W301-Idx2 = 3 * (W301-Idx - 1) + 1.
 
-           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO C.
+           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO W301-C.
            ADD 1 TO W301-Idx2.
-           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO D.
+           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO W301-D.
            ADD 1 TO W301-Idx2.
-           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO U.
+           MOVE FUNCTION NUMVAL(W301-Num-Chars(W301-Idx2)) TO W301-U.
 
-           COMPUTE W301-Idx2 = C * 100 + D * 10 + U.
+           COMPUTE W301-Idx2 = W301-C * 100 + W301-D * 10 + W301-U.
 
 
            IF (W301-Idx = 1 OR W301-Idx = 3)
@@ -102,7 +102,7 @@
                IF W301-Idx2 > 1
                  PERFORM 301-CDU
                END-IF
-               MOVE "MIL _" TO WS-In
+               MOVE "MIL _" TO W300-In
                PERFORM 300-COPY-STRING
              END-IF
            END-IF.
@@ -112,10 +112,10 @@
              IF W301-Idx3 > 0
                IF W301-Idx3 > 1
                  PERFORM 301-CDU
-                 MOVE "MILLONES _" TO WS-In
+                 MOVE "MILLONES _" TO W300-In
                  PERFORM 300-COPY-STRING
                ELSE
-                 MOVE "UN MILLON _" TO WS-In
+                 MOVE "UN MILLON _" TO W300-In
                  PERFORM 300-COPY-STRING
                END-IF
              END-IF

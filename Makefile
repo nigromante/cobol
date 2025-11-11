@@ -1,7 +1,7 @@
 
 EXE:=./BUILD/$(input)
 SRC:=./APPS/$(input).cbl
-ARGS:=-v -x -I ./LIB
+ARGS:=-x -I ./LIB
 
 
 $(EXE): $(SRC)
