@@ -1,0 +1,33 @@
+ 
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DEMO.
+       AUTHOR. JULIAN VIDAL.
+
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT OUTFILE
+           ASSIGN './DATA/OUTFILE'
+           ORGANIZATION IS LINE SEQUENTIAL.
+       
+       DATA DIVISION.
+       FILE SECTION.
+       FD OUTFILE
+           DATA RECORD IS OUT-RECORD.
+
+       01  OUT-RECORD.
+         05  STUFF PIC X(10).
+          
+
+
+       PROCEDURE DIVISION.
+
+           OPEN EXTEND OUTFILE.
+
+           MOVE "JULIAN" TO STUFF.
+           WRITE OUT-RECORD.
+
+           CLOSE OUTFILE.
+
+           STOP RUN.

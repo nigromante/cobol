@@ -1,7 +1,7 @@
 
-EXE:=./BUILD/$(input)
-SRC:=./APPS/$(input).cbl
-ARGS:=-v -x -I ./LIB
+EXE:=./BUILDTEST/$(input)
+SRC:=./TEST/$(input).cbl
+ARGS:=-v -x -I ./LIB -I ./LIBT
 
 
 $(EXE): $(SRC)
@@ -23,7 +23,7 @@ run:
 clrscr:
 	@clear
 	@echo "------------------------------------------------------------------"
-	@echo "-- Apps / Cobol                             2025 / Julián Vidal --"
+	@echo "-- Testing Apps / Cobol                     2025 / Julián Vidal --"
 	@echo "------------------------------------------------------------------"
 
 all: clrscr clean compile run 
