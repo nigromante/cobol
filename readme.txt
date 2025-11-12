@@ -1,5 +1,5 @@
 
-Compile:
+ lgCompile:
 
   Release:
 
