@@ -1,9 +1,9 @@
 
 EXE:=./BUILDTEST/$(input)
 SRC:=./TEST/$(input).cbl
-ARGS:=-x -I ./LIB -I ./LIBT
+ARGS:=-v -x -I ./LIB -I ./LIBT
 MOD:=./BUILDTEST/$(input).so
-ARGSM:=-m -I ./LIB -I ./LIBT
+ARGSM:=-v -m -I ./LIB -I ./LIBT
 
 
 $(EXE): $(SRC)

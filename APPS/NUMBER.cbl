@@ -3,9 +3,9 @@
        PROGRAM-ID. NUMBER.
        AUTHOR. JULIAN VIDAL.
        DATA DIVISION.
-          
+
        WORKING-STORAGE SECTION.
-           
+
            INCLUDE GLOBAL_DEF.
            INCLUDE TRACE_DEF.
            INCLUDE STRCAT_DEF.

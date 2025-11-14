@@ -34,7 +34,8 @@
            88  WS-EOF  VALUE 'Y'.
            88  WS-NOT-EOF  VALUE 'N'.
 
-       01  parametro   PIC x(10).
+       01  parametro   PIC x(12).
+       01  texto       PIC x(2000).
        01  idx     PIC 99 VALUE 1.
        77  formato PIC zzzzzz9.99.
 
@@ -55,9 +56,10 @@
 
        main section.
 
-           MOVE "0123456789"  TO parametro.
-           display parametro line 1 position 10.
-           call cancelar USING parametro.
+           MOVE "012345678901"  TO parametro.
+           display parametro line 11 position 10.
+           call cancelar USING parametro texto.
+           display texto line 12 position 10.
 
            perform open-files.
            perform show-screen.
