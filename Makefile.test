@@ -1,11 +1,11 @@
 
 EXE:=./BUILD/DEBUG/$(input)
 SRC:=./SRC/TEST/$(input).cbl
-ARGS:=-v -x -I ./SRC/LIB -I ./SRC/LIBT
+ARGS:=-v -x -I ./SRC/LIB -I ./SRC/TEST/LIB
 
 MOD:=./BUILD/DEBUG/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
-ARGSM:=-v -m -I ./SRC/LIB -I ./SRC/LIBT
+ARGSM:=-v -m -I ./SRC/LIB -I ./SRC/TEST/LIB
 
 
 $(EXE): $(SRC)
