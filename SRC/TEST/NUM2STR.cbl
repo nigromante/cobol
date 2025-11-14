@@ -8,7 +8,6 @@
            program LIBNUM2STR.
 
        special-names.
-      *     console is crt
             decimal-point is comma.
 
        data division.
@@ -19,9 +18,6 @@
        01  texto       PIC x(2000).
 
        procedure division.
-
-
-       main section.
 
            MOVE "012345678921"  TO parametro.
            display parametro line 10 position 10.
