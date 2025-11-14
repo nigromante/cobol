@@ -8,7 +8,7 @@
            program LIBNUM2STR.
 
        special-names.
-            console is crt
+      *     console is crt
             decimal-point is comma.
 
        data division.
@@ -25,6 +25,7 @@
 
            MOVE "012345678921"  TO parametro.
            display parametro line 10 position 10.
+
            call LIBNUM2STR USING parametro texto.
            display texto line 12 position 10.
 

@@ -4,8 +4,6 @@
 
        environment division.
        configuration section.
-       repository.
-           program LIBNUM2STR.
 
        special-names.
             console is crt
@@ -56,11 +54,6 @@
 
        main section.
 
-           MOVE "012345678901"  TO parametro.
-           display parametro line 11 position 10.
-           call LIBNUM2STR USING parametro texto.
-           display texto line 12 position 10.
-
            perform open-files.
            perform show-screen.
 
@@ -86,7 +79,7 @@
 
 
        listado.
-           MOVE 20 To idx.
+           MOVE 10 To idx.
            set WS-NOT-EOF to TRUE.
            PERFORM UNTIL WS-EOF
              READ isamfile NEXT RECORD
