@@ -1,11 +1,11 @@
 
-EXE:=./BUILDTEST/$(input)
-SRC:=./TEST/$(input).cbl
-ARGS:=-v -x -I ./LIB -I ./LIBT
+EXE:=./BUILD/DEBUG/$(input)
+SRC:=./SRC/TEST/$(input).cbl
+ARGS:=-v -x -I ./SRC/LIB -I ./SRC/LIBT
 
-MOD:=./BUILDTEST/$(input).so
-SRCM:=./MODULES/$(input).cbl
-ARGSM:=-v -m -I ./LIB -I ./LIBT
+MOD:=./BUILD/DEBUG/$(input).so
+SRCM:=./SRC/MODULES/$(input).cbl
+ARGSM:=-v -m -I ./SRC/LIB -I ./SRC/LIBT
 
 
 $(EXE): $(SRC)

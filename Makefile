@@ -1,12 +1,12 @@
 
-EXE:=./BUILD/$(input)
-SRC:=./APPS/$(input).cbl
-ARGS:=-x -I ./LIB
+EXE:=./BUILD/RELEASE/$(input)
+SRC:=./SRC/APPS/$(input).cbl
+ARGS:=-x -I ./SRC/LIB
 
 
-MOD:=./BUILD/$(input).so
-SRCM:=./MODULES/$(input).cbl
-ARGSM:=-m -I ./LIB
+MOD:=./BUILD/RELEASE/$(input).so
+SRCM:=./SRC/MODULES/$(input).cbl
+ARGSM:=-m -I ./SRC/LIB
 
 
 $(EXE): $(SRC)
