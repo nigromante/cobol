@@ -1,9 +1,9 @@
 
- lgCompile:
+ Compile:
 
   Release:
 
-      make input=TARGET [clean|compile|run|all]
+      make input=TARGET [clean|compile|run|all|module]
 
   Debug:
 

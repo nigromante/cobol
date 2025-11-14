@@ -1,0 +1,26 @@
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. NUMBER.
+       AUTHOR. JULIAN VIDAL.
+       DATA DIVISION.
+          
+       WORKING-STORAGE SECTION.
+           
+           INCLUDE GLOBAL_DEF.
+           INCLUDE TRACE_DEF.
+           INCLUDE STRCAT_DEF.
+           INCLUDE NUM2STR_DEF.
+
+
+       PROCEDURE DIVISION.
+
+           PERFORM   301-INIT.
+           PERFORM   301-TEST.
+
+           STOP RUN.
+
+           INCLUDE TRACE_CODE.
+           INCLUDE STRCAT_CODE.
+           INCLUDE NUM2STR_CODE.
+
+           INCLUDE NUM2STR_TEST.

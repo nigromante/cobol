@@ -1,13 +1,17 @@
 
 EXE:=./BUILDTEST/$(input)
 SRC:=./TEST/$(input).cbl
-ARGS:=-v -x -I ./LIB -I ./LIBT
+ARGS:=-x -I ./LIB -I ./LIBT
+MOD:=./BUILDTEST/$(input).so
+ARGSM:=-m -I ./LIB -I ./LIBT
 
 
 $(EXE): $(SRC)
 	@clear
 	@cobc $(ARGS) -o $(EXE) $(SRC)
 
+module:
+	@cobc $(ARGSM) -o $(MOD) $(SRC)
 
 compile:
 	@cobc $(ARGS) -o $(EXE) $(SRC)
@@ -16,7 +20,6 @@ clean:
 	@rm $(EXE)
 
 run:
-	@echo "------------------------------------------------------------------"
 	@$(EXE)
 	@echo
 
