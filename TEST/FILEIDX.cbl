@@ -5,7 +5,7 @@
        environment division.
        configuration section.
        repository.
-           program CANCELAR.
+           program LIBNUM2STR.
 
        special-names.
             console is crt
@@ -58,7 +58,7 @@
 
            MOVE "012345678901"  TO parametro.
            display parametro line 11 position 10.
-           call cancelar USING parametro texto.
+           call LIBNUM2STR USING parametro texto.
            display texto line 12 position 10.
 
            perform open-files.

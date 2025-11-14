@@ -2,7 +2,9 @@
 EXE:=./BUILDTEST/$(input)
 SRC:=./TEST/$(input).cbl
 ARGS:=-v -x -I ./LIB -I ./LIBT
+
 MOD:=./BUILDTEST/$(input).so
+SRCM:=./MODULES/$(input).cbl
 ARGSM:=-v -m -I ./LIB -I ./LIBT
 
 
@@ -11,10 +13,10 @@ $(EXE): $(SRC)
 	@cobc $(ARGS) -o $(EXE) $(SRC)
 
 module:
-	@cobc $(ARGSM) -o $(MOD) $(SRC)
+	@cobc $(ARGSM) -o $(MOD) $(SRCM)
 
 compile:
-	@cobc $(ARGS) -o $(EXE) $(SRC)
+	@cobc $(ARGS) -o $(EXE) $(SRC) 
 
 clean:
 	@rm $(EXE)

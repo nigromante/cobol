@@ -2,7 +2,10 @@
 EXE:=./BUILD/$(input)
 SRC:=./APPS/$(input).cbl
 ARGS:=-x -I ./LIB
+
+
 MOD:=./BUILD/$(input).so
+SRCM:=./MODULES/$(input).cbl
 ARGSM:=-m -I ./LIB
 
 
@@ -11,7 +14,7 @@ $(EXE): $(SRC)
 	@cobc $(ARGS) -o $(EXE) $(SRC)
 
 module:
-	@cobc $(ARGSM) -o $(MOD) $(SRC)
+	@cobc $(ARGSM) -o $(MOD) $(SRCM)
 
 compile:
 	@cobc $(ARGS) -o $(EXE) $(SRC)
