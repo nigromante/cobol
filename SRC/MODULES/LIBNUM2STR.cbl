@@ -10,7 +10,7 @@
            INCLUDE NUM2STR_DEF.
 
        LINKAGE SECTION.
-           77  numero  PIC X(10).
+           77  numero  PIC X(12).
            77  texto   PIC X(2000).
 
 
