@@ -11,19 +11,19 @@
            INCLUDE NUM2STR_DEF.
 
        LINKAGE SECTION.
-           77  numero  PIC X(12).
-           77  texto   PIC X(2000).
+           77  NUMERO  PIC X(12).
+           77  TEXTO   PIC X(2000).
 
 
-       PROCEDURE DIVISION USING numero texto.
+       PROCEDURE DIVISION USING NUMERO TEXTO.
 
            PERFORM   301-INIT.
 
-           MOVE numero TO W301-Num.
+           MOVE NUMERO   TO W301-Num.
 
            PERFORM 301-LOOP.
 
-           move W300-Out TO texto.
+           move W300-Out TO  TEXTO.
 
            GOBACK.
 

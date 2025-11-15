@@ -1,26 +1,26 @@
-       identification division.
-       program-id.    NUM2STR.
-       author.        Julian Vidal.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    NUM2STR.
+       AUTHOR.        JULIAN VIDAL.
 
-       environment division.
-       configuration section.
-       repository.
-           program LIBNUM2STR.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       REPOSITORY.
+           PROGRAM LIBNUM2STR.
 
-       data division.
+       DATA DIVISION.
 
-       working-storage section.
+       WORKING-STORAGE SECTION.
 
-       01  parametro   PIC x(12).
-       01  texto       PIC x(2000).
+       01  PARAMETRO   PIC x(12).
+       01  TEXTO       PIC x(2000).
 
-       procedure division.
+       PROCEDURE DIVISION.
 
-           MOVE "012345678921"  TO parametro.
-           call LIBNUM2STR USING parametro texto.
+           MOVE "012345678921"  TO PARAMETRO.
+           CALL LIBNUM2STR USING PARAMETRO TEXTO.
 
-           display parametro line 10 position 10.
-           display texto     line 12 position 10.
+           DISPLAY PARAMETRO LINE 10 POSITION 10.
+           DISPLAY TEXTO     LINE 12 POSITION 10.
 
-           stop run.
+           STOP  RUN.
 
