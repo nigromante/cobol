@@ -8,10 +8,15 @@ MOD:=./BUILD/RELEASE/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
 ARGSM:=-m -I ./SRC/LIB
 
+$(EXE):$(SRC)
+	@cobc $(ARGS) -o $(EXE) $(SRC) 
 
-$(EXE): $(SRC)
+help:
 	@clear
-	@cobc $(ARGS) -o $(EXE) $(SRC)
+	@echo "make input=TAGET clean|compile|run|all|module"
+	@echo "o"
+	@echo "make -f Makefile.test input=TAGET clean|compile|run|all|module"
+	@echo
 
 module:
 	@cobc $(ARGSM) -o $(MOD) $(SRCM)
