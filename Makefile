@@ -1,12 +1,11 @@
 
 EXE:=./BUILD/RELEASE/$(input)
 SRC:=./SRC/APPS/$(input).cbl
-ARGS:=-x -I ./SRC/LIB
-
+ARGS:=-x -I ./SRC/CODE
 
 MOD:=./BUILD/RELEASE/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
-ARGSM:=-m -I ./SRC/LIB
+ARGSM:=-m -I ./SRC/CODE
 
 $(EXE):$(SRC)
 	@cobc $(ARGS) -o $(EXE) $(SRC) 
