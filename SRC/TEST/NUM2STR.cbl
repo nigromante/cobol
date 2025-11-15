@@ -7,9 +7,6 @@
        repository.
            program LIBNUM2STR.
 
-       special-names.
-            decimal-point is comma.
-
        data division.
 
        working-storage section.
