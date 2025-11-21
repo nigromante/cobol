@@ -19,11 +19,11 @@
 
            PERFORM   301-INIT.
 
-           MOVE NUMERO   TO W301-Num.
+           MOVE NUMERO   TO W301-NUM.
 
-           PERFORM 301-LOOP.
+           PERFORM 301-CONVERT.
 
-           move W300-Out TO  TEXTO.
+           MOVE W301-OUT TO  TEXTO.
 
            GOBACK.
 
