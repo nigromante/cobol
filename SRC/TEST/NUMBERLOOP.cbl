@@ -4,7 +4,7 @@
        PROGRAM-ID. LOOP.
        AUTHOR. JULIAN VIDAL.
        DATA DIVISION.
-          
+
        WORKING-STORAGE SECTION.
 
 
@@ -12,11 +12,11 @@
            INCLUDE TRACE_DEF.
            INCLUDE STRCAT_DEF.
            INCLUDE NUM2STR_DEF.
+           INCLUDE NUM2STRT_DEF.
 
        PROCEDURE DIVISION.
 
            PERFORM   301-INIT.
-
            PERFORM   301T-LOOPINIT.
            PERFORM   301T-LOOP.
 
@@ -25,7 +25,6 @@
 
            INCLUDE TRACE_CODE.
            INCLUDE STRCAT_CODE.
-
            INCLUDE NUM2STR_CODE.
-           INCLUDE NUM2STR_TEST.
+           INCLUDE NUM2STRT_CODE.
 

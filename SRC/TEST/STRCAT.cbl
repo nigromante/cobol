@@ -3,9 +3,9 @@
        PROGRAM-ID. STRCAT.
        AUTHOR. JULIAN VIDAL.
        DATA DIVISION.
-          
+
        WORKING-STORAGE SECTION.
-           
+
            INCLUDE GLOBAL_DEF.
            INCLUDE TRACE_DEF.
            INCLUDE STRCAT_DEF.
@@ -19,5 +19,4 @@
 
            INCLUDE TRACE_CODE.
            INCLUDE STRCAT_CODE.
-
            INCLUDE STRCAT_TEST.
