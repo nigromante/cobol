@@ -1,4 +1,4 @@
-           77  W301-VERSION  PIC X(10) VALUE '1.0'.
+           77  W301-VERSION  PIC X(10) VALUE 'NUM2STR V 1.0'.
 
       *    Input/Output
            77 W301-NUM  PIC X(12).
