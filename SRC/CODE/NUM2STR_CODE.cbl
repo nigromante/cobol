@@ -1,4 +1,6 @@
-
+       301-VERSION.
+           DISPLAY "VERSION : " LINE 2  POSITION 10.
+           DISPLAY W301-VERSION  LINE 2  POSITION 20.
 
        301-INIT.
 
@@ -44,7 +46,7 @@
 
 
 
-       301-CDU.
+       301-CDU-PARSE.
 
            IF W301-C > 0
              IF W301-C = 1
@@ -83,35 +85,43 @@
 
 
 
+       301-CDU-CALC.
+
+           COMPUTE W301-IDX = 3 * (W301-PART - 1) + 1.
+
+           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX)) TO W301-C.
+           ADD 1 TO W301-IDX.
+           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX)) TO W301-D.
+           ADD 1 TO W301-IDX.
+           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX)) TO W301-U.
+
+           COMPUTE W301-CDU = W301-C * 100 + W301-D * 10 + W301-U.
+
+
        301-SEGMENT.
 
-           COMPUTE W301-IDX2 = 3 * (W301-IDX - 1) + 1.
+           PERFORM 301-CDU-CALC.
 
-           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX2)) TO W301-C.
-           ADD 1 TO W301-IDX2.
-           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX2)) TO W301-D.
-           ADD 1 TO W301-IDX2.
-           MOVE FUNCTION NUMVAL(W301-NUM-CHARS(W301-IDX2)) TO W301-U.
+           IF (W301-PART = 1 OR W301-PART = 3)
 
-           COMPUTE W301-IDX2 = W301-C * 100 + W301-D * 10 + W301-U.
+             IF (W301-PART = 1)
+               COMPUTE W301-MILLAR = W301-CDU * 1000
+             END-IF
 
-
-           IF (W301-IDX = 1 OR W301-IDX = 3)
-             COMPUTE W301-IDX3 = W301-IDX2 * 1000
-             IF W301-IDX2 > 0
-               IF W301-IDX2 > 1
-                 PERFORM 301-CDU
+             IF (W301-CDU > 0)
+               IF (W301-CDU > 1)
+                 PERFORM 301-CDU-PARSE
                END-IF
                MOVE "MIL _" TO W300-In
                PERFORM 300-COPY-STRING
              END-IF
            END-IF.
 
-           IF (W301-IDX = 2)
-             COMPUTE W301-IDX3 = W301-IDX2 + W301-IDX3
-             IF W301-IDX3 > 0
-               PERFORM 301-CDU
-               IF W301-IDX3 > 1
+           IF (W301-PART = 2)
+             COMPUTE W301-MILLAR = W301-CDU + W301-MILLAR
+             IF W301-MILLAR > 0
+               PERFORM 301-CDU-PARSE
+               IF W301-MILLAR > 1
                  MOVE "MILLONES _" TO W300-In
                  PERFORM 300-COPY-STRING
                ELSE
@@ -121,18 +131,20 @@
              END-IF
            END-IF.
 
-           IF ( W301-IDX = 4 AND W301-IDX2 > 0 )
-               PERFORM 301-CDU
+           IF ( W301-PART = 4 AND W301-CDU > 0 )
+               PERFORM 301-CDU-PARSE
            END-IF.
 
 
        301-CONVERT.
 
+           MOVE  0   TO    W301-MILLAR.
+
            PERFORM 300-RESET.
 
            PERFORM 301-SEGMENT
-             VARYING W301-IDX
-             FROM 1 BY 1 UNTIL W301-IDX > 4.
+             VARYING W301-PART
+             FROM 1 BY 1 UNTIL W301-PART > 4.
 
            PERFORM 300-CUT-LAST-CHAR.
 

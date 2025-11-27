@@ -1,11 +1,11 @@
 
- Compile:
+Compile:
 
-  Release:
+    Release:
 
       make input=TARGET [clean|compile|run|all|module]
 
-  Debug:
+    Debug:
 
       make -f Makefile.test input=TARGET [clean|compile|run|all]
 

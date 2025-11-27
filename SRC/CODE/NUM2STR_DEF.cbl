@@ -1,3 +1,4 @@
+           77  W301-VERSION  PIC X(10) VALUE '1.0'.
 
       *    Input/Output
            77 W301-NUM  PIC X(12).
@@ -16,8 +17,9 @@
            77 W301-D  PIC 9.
            77 W301-C  PIC 9.
 
-           77 W301-IDX  PIC  9.
-           77 W301-IDX2 PIC  999.
-           77 W301-IDX3 PIC  999999 VALUE 0.
+           77 W301-PART    PIC  9.
+           77 W301-CDU     PIC  999999 VALUE 0.
+           77 W301-MILLAR  PIC  999999 VALUE 0.
 
+           77 W301-IDX     PIC  999.
 
