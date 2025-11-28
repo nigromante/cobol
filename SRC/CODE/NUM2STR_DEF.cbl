@@ -1,10 +1,10 @@
            77  W301-VERSION  PIC X(10) VALUE 'NUM2STR V 1.0'.
 
       *    Input/Output
-           77 W301-NUM  PIC X(12).
-           77 W301-NUM-CHARS REDEFINES W301-NUM OCCURS 12 TIMES PIC X.
+           77 W301-NUMERO    PIC X(12).
+           77 W301-CHARS REDEFINES W301-NUMERO OCCURS 12 TIMES PIC X.
 
-           77 W301-OUT     PIC X(2000).
+           77 W301-RESULT    PIC X(2000).
 
       *    Textos
            77 W301-CENTENAS    OCCURS 10 TIMES PIC X(20).

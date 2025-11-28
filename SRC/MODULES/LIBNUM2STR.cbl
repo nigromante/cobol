@@ -19,11 +19,11 @@
            PERFORM   301-INIT.
       *    PERFORM   301-VERSION.
 
-           MOVE NUMERO   TO W301-NUM.
+           MOVE NUMERO   TO W301-NUMERO.
 
            PERFORM 301-CONVERT.
 
-           MOVE W301-OUT TO  TEXTO.
+           MOVE W301-RESULT TO  TEXTO.
 
            GOBACK.
 

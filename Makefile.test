@@ -3,7 +3,7 @@ EXE:=./BUILD/DEBUG/$(input)
 SRC:=./SRC/TEST/$(input).cbl
 ARGS:=-v -x -I ./SRC/CODE -I ./SRC/TEST/LIB
 
-MOD:=./BUILD/DEBUG/$(input).so
+MOD:=./BUILD/DEBUG/LIB/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
 ARGSM:=-v -m -I ./SRC/CODE -I ./SRC/TEST/LIB
 
