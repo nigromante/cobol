@@ -3,7 +3,7 @@ EXE:=./BUILD/RELEASE/$(input)
 SRC:=./SRC/APPS/$(input).cbl
 ARGS:=-x -I ./SRC/CODE
 
-MOD:=./BUILD/RELEASE/$(input).so
+MOD:=./BUILD/RELEASE/LIB/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
 ARGSM:=-m -I ./SRC/CODE
 
