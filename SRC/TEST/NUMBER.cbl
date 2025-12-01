@@ -9,7 +9,7 @@
            INCLUDE GLOBAL_DEF.
            INCLUDE TRACE_DEF.
            INCLUDE STRCAT_DEF.
-           INCLUDE NUM2STR_DEF.
+           INCLUDE NUM2ESSTR_DEF.
            INCLUDE NUM2STRT_DEF.
 
 
@@ -22,5 +22,5 @@
 
            INCLUDE TRACE_CODE.
            INCLUDE STRCAT_CODE.
-           INCLUDE NUM2STR_CODE.
+           INCLUDE NUM2ESSTR_CODE.
            INCLUDE NUM2STRT_CODE.

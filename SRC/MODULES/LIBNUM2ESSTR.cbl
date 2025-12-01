@@ -7,7 +7,7 @@
        WORKING-STORAGE SECTION.
            INCLUDE GLOBAL_DEF.
            INCLUDE STRCAT_DEF.
-           INCLUDE NUM2STR_DEF.
+           INCLUDE NUM2ESSTR_DEF.
 
        LINKAGE SECTION.
            77  NUMERO  PIC X(12).
@@ -27,5 +27,5 @@
            GOBACK.
 
        INCLUDE STRCAT_CODE.
-       INCLUDE NUM2STR_CODE.
+       INCLUDE NUM2ESSTR_CODE.
 
