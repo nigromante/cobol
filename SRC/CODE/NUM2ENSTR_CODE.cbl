@@ -4,7 +4,7 @@
 
        302-INIT.
 
-           MOVE "ONE _"i         TO  W302-UNIDADES(1).
+           MOVE "ONE _"          TO  W302-UNIDADES(1).
            MOVE "TWO _"          TO  W302-UNIDADES(2).
            MOVE "THREE _"        TO  W302-UNIDADES(3).
            MOVE "FOUR _"         TO  W302-UNIDADES(4).
