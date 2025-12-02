@@ -12,13 +12,20 @@
 
        WORKING-STORAGE SECTION.
 
-       01  NUMERO      PIC x(12).
+       01  NUMERO      PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
 
        PROCEDURE DIVISION.
 
            MOVE "012345678921"  TO NUMERO.
+
+           PERFORM 000-TEST
+             UNTIL NUMERO = ''.
+
+           STOP  RUN.
+
+       000-TEST.
 
            CALL NUM2EN   USING NUMERO TEXTO-EN.
            CALL NUM2ES   USING NUMERO TEXTO-ES.
@@ -27,5 +34,6 @@
            DISPLAY TEXTO-EN  LINE 12 POSITION 10.
            DISPLAY TEXTO-ES  LINE 15 POSITION 10.
 
-           STOP  RUN.
+           ACCEPT NUMERO LINE 2 POSITION 10.
+
 
