@@ -27,7 +27,7 @@
            MOVE "TEN _"          TO  W302-DECENAS(1).
            MOVE "TWENTY _"       TO  W302-DECENAS(2).
            MOVE "THIRTY _"       TO  W302-DECENAS(3).
-           MOVE "FOURTY _"       TO  W302-DECENAS(4).
+           MOVE "FORTY _"        TO  W302-DECENAS(4).
            MOVE "FIFTY _"        TO  W302-DECENAS(5).
            MOVE "SIXTY _"        TO  W302-DECENAS(6).
            MOVE "SEVENTY _"      TO  W302-DECENAS(7).
