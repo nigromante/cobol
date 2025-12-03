@@ -1,3 +1,4 @@
+
        302-VERSION.
            DISPLAY "VERSION : "  LINE 2  POSITION 10.
            DISPLAY W302-VERSION  LINE 2  POSITION 20.
@@ -39,8 +40,10 @@
        302-CDU-PARSE.
 
            IF W302-C > 0
+
              MOVE W302-UNIDADES(W302-C) TO W300-In
              PERFORM 300-COPY-STRING
+
              MOVE "HUNDRED _" TO W300-In
              PERFORM 300-COPY-STRING
            END-IF.
@@ -76,6 +79,7 @@
            COMPUTE W302-CDU = W302-C * 100 + W302-D * 10 + W302-U.
 
 
+
        302-SEGMENT.
 
            PERFORM 302-CDU-CALC.
@@ -86,7 +90,6 @@
              PERFORM 300-COPY-STRING
            END-IF.
 
-
            IF (W302-PART = 2)
              COMPUTE W302-MILLAR = W302-CDU + W302-MILLAR
              IF W302-MILLAR > 0
@@ -96,17 +99,16 @@
              END-IF
            END-IF.
 
-
            IF (W302-PART = 3 AND W302-CDU > 0)
                PERFORM 302-CDU-PARSE
                MOVE "THOUSAND _" TO W300-In
                PERFORM 300-COPY-STRING
            END-IF.
 
-
            IF ( W302-PART = 4 AND W302-CDU > 0 )
              PERFORM 302-CDU-PARSE
            END-IF.
+
 
 
        302-CONVERT.
