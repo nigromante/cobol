@@ -21,7 +21,7 @@
            MOVE "012345678921"  TO NUMERO.
 
            PERFORM 000-TEST
-             UNTIL NUMERO = ''.
+             UNTIL NUMERO = ' '.
 
            STOP  RUN.
 
