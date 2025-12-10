@@ -3,24 +3,7 @@ EXE:=./BUILD/DEBUG/$(input)
 SRC:=./SRC/TEST/$(input).cbl
 ARGS:=-v -x -I ./SRC/CODE -I ./SRC/TEST/LIB
 
-MOD:=./BUILD/DEBUG/LIB/$(input).so
-SRCM:=./SRC/MODULES/$(input).cbl
-ARGSM:=-v -m -I ./SRC/CODE -I ./SRC/TEST/LIB
-
 $(EXE):$(SRC)
-	@cobc $(ARGS) -o $(EXE) $(SRC) 
-
-help:
-	@clear
-	@echo "make input=TAGET clean|compile|run|all|module"
-	@echo "o"
-	@echo "make -f Makefile.test input=TAGET clean|compile|run|all|module"
-	@echo
-
-module:
-	@cobc $(ARGSM) -o $(MOD) $(SRCM)
-
-compile:
 	@cobc $(ARGS) -o $(EXE) $(SRC) 
 
 clean:
@@ -29,12 +12,3 @@ clean:
 run:
 	@$(EXE)
 	@echo
-
-clrscr:
-	@clear
-	@echo "------------------------------------------------------------------"
-	@echo "-- Testing Apps / Cobol                     2025 / Julián Vidal --"
-	@echo "------------------------------------------------------------------"
-
-all: clrscr clean compile run 
-

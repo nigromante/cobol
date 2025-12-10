@@ -1,0 +1,12 @@
+
+
+MOD:=./BUILD/DEBUG/LIB/$(input).so
+SRCM:=./SRC/MODULES/$(input).cbl
+ARGSM:=-v -m -I ./SRC/CODE -I ./SRC/TEST/LIB
+
+module:
+	cobc $(ARGSM) -o $(MOD) $(SRCM)
+
+clean:
+	rm $(MOD)
+
