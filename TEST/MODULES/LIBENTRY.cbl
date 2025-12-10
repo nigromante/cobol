@@ -1,0 +1,20 @@
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LIBENTRY.
+       AUTHOR. JULIAN VIDAL.
+
+       DATA DIVISION.
+
+       WORKING-STORAGE SECTION.
+
+       LINKAGE SECTION.
+           77  NUMERO  PIC X(12).
+           77  TEXTO   PIC X(2000).
+
+
+       PROCEDURE DIVISION USING NUMERO TEXTO.
+           MOVE "Julian Vidal" TO TEXTO
+
+           GOBACK.
+
+

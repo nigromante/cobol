@@ -1,7 +1,7 @@
 
 MOD:=./BUILD/DEBUG/LIB/$(input).so
-SRCM:=./SRC/MODULES/$(input).cbl
-ARGSM:=-v -m -Wothers -I ./SRC/CODE
+SRCM:=./TEST/MODULES/$(input).cbl
+ARGSM:=-v -m -Wothers -I ./TEST/CODE
 
 module:
 	cobc $(ARGSM) -o $(MOD) $(SRCM)
