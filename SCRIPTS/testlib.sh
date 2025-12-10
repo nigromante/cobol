@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 echo && make -f ./SCRIPTS/Makefile.test.module input=LIBESNUM2STR

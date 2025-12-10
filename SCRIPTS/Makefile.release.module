@@ -1,5 +1,6 @@
 
-MOD:=./BUILD/DEBUG/LIB/$(input).so
+
+MOD:=./BUILD/RELEASE/LIB/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
 ARGSM:=-v -m -I ./SRC/CODE
 

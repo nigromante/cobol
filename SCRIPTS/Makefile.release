@@ -1,0 +1,14 @@
+
+EXE:=./BUILD/RELEASE/$(input)
+SRC:=./SRC/APPS/$(input).cbl
+ARGS:=-x -I ./SRC/CODE
+
+$(EXE):$(SRC)
+	@cobc $(ARGS) -o $(EXE) $(SRC) 
+
+clean:
+	@rm $(EXE)
+
+run:
+	@$(EXE)
+	@echo
