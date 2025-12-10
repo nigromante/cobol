@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 export COB_LIBRARY_PATH=~/Work/proyectos/cobol/BUILD/DEBUG/LIB
