@@ -4,7 +4,7 @@ MOD:=./BUILD/RELEASE/LIB/$(input).so
 SRCM:=./SRC/MODULES/$(input).cbl
 ARGSM:=-v -m -I ./SRC/CODE
 
-module:
+$(MOD):$(SRCM)
 	cobc $(ARGSM) -o $(MOD) $(SRCM)
 
 clean:
