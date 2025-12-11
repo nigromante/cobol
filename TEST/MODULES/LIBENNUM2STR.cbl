@@ -13,15 +13,10 @@
 
 
        PROCEDURE DIVISION USING NUMERO TEXTO.
-
            PERFORM   302-INIT.
-
            MOVE NUMERO   TO W302-NUMERO.
-
            PERFORM 302-CONVERT.
-
            MOVE W302-RESULT TO  TEXTO.
-
            GOBACK.
 
        INCLUDE STRCAT_CODE.
