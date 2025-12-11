@@ -9,9 +9,7 @@
            PROGRAM NUM2EN AS 'LIBENNUM2STR'.
 
        DATA DIVISION.
-
        WORKING-STORAGE SECTION.
-
        01  NUMERO      PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
@@ -26,7 +24,6 @@
            STOP  RUN.
 
        000-TEST.
-
            CALL NUM2EN   USING NUMERO TEXTO-EN.
            CALL NUM2ES   USING NUMERO TEXTO-ES.
 

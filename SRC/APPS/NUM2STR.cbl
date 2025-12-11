@@ -9,24 +9,22 @@
            PROGRAM NUM2EN AS 'LIBENNUM2STR'.
 
        DATA DIVISION.
-
        WORKING-STORAGE SECTION.
-
        01  NUMERO      PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
 
        PROCEDURE DIVISION.
-
-           MOVE "012345678921"  TO NUMERO.
-
-           PERFORM 000-TEST
-             UNTIL NUMERO = ' '.
-
+           PERFORM   000-MAIN.
            STOP  RUN.
 
-       000-TEST.
 
+       000-MAIN.
+           MOVE "012345678921"  TO NUMERO.
+           PERFORM 000-TEST UNTIL NUMERO = ' '.
+
+
+       000-TEST.
            CALL NUM2EN   USING NUMERO TEXTO-EN.
            CALL NUM2ES   USING NUMERO TEXTO-ES.
 

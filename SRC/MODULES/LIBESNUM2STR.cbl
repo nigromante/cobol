@@ -3,27 +3,20 @@
        AUTHOR. JULIAN VIDAL.
 
        DATA DIVISION.
-
        WORKING-STORAGE SECTION.
            INCLUDE GLOBAL_DEF.
            INCLUDE STRCAT_DEF.
            INCLUDE NUM2ESSTR_DEF.
-
        LINKAGE SECTION.
            77  NUMERO  PIC X(12).
            77  TEXTO   PIC X(2000).
 
 
        PROCEDURE DIVISION USING NUMERO TEXTO.
-
            PERFORM   301-INIT.
-
            MOVE NUMERO   TO W301-NUMERO.
-
            PERFORM 301-CONVERT.
-
            MOVE W301-RESULT TO  TEXTO.
-
            GOBACK.
 
        INCLUDE STRCAT_CODE.

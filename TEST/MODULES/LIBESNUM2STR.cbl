@@ -3,12 +3,10 @@
        AUTHOR. JULIAN VIDAL.
 
        DATA DIVISION.
-
        WORKING-STORAGE SECTION.
            INCLUDE GLOBAL_DEF.
            INCLUDE STRCAT_DEF.
            INCLUDE NUM2ESSTR_DEF.
-
        LINKAGE SECTION.
            77  NUMERO  PIC X(12).
            77  TEXTO   PIC X(2000).
