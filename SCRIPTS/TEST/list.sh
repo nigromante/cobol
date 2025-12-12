@@ -9,4 +9,5 @@ echo STRCAT
 echo ENTRY
 echo FILEIDX
 echo FILESEQ
+echo SCREEN
 echo ------------------
