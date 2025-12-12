@@ -34,7 +34,6 @@
            CALL NUM2ES   USING NUMERO TEXTO-ES.
            MOVE  NUMERO  TO  NUMERO-CUR.
 
-           DISPLAY CLEAR-SCREEN.
            DISPLAY INPUT-SCREEN.
 
            MOVE 0 TO NUMERO.
