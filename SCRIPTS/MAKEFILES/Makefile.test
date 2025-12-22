@@ -1,7 +1,7 @@
 
 EXE:=./BUILD/DEBUG/$(input)
 SRC:=./TEST/APPS/$(input).cbl
-ARGS:=-v -x -Wothers -I ./TEST/CODE -I ./TEST/APPS/LIB -I ./TEST/APPS/SCREEN
+ARGS:=-v -x -Wothers -I ./TEST/CODE -I ./TEST/APPS/LIB -I ./TEST/SCREENS
 
 $(EXE):$(SRC)
 	@cobc $(ARGS) -o $(EXE) $(SRC) 
