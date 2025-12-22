@@ -2,6 +2,6 @@
 
 rm -rf ./BUILD
 
-mkdir -p BUILD/DEBUG/LIB
 mkdir -p BUILD/RELEASE/LIB
+mkdir -p BUILD/DEBUG/LIB
 
