@@ -34,6 +34,6 @@
            STOP  RUN.
 
        STARTING.
-           CALL "LIBENTRY" USING NUMERO TEXTO-EN END-CALL.
+           CALL "LIBENTRY".
 
        END PROGRAM ENTRY.

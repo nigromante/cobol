@@ -14,8 +14,7 @@
            77  NUMERO  PIC X(12).
            77  TEXTO   PIC X(2000).
 
-       PROCEDURE DIVISION USING NUMERO TEXTO.
-           MOVE "LIBENTRY LOADING .........." TO TEXTO
+       PROCEDURE DIVISION.
            GOBACK.
 
        ENTRY-VERSION SECTION.
