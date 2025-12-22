@@ -17,9 +17,11 @@
        77  LINEA       PIC 99  VALUE ZERO.
 
        PROCEDURE DIVISION.
+           PERFORM LIBS-LOADER.
+           PERFORM TESTS.
+           STOP RUN.
 
-           PERFORM STARTING.
-
+       TESTS.
            MOVE 3  TO LINEA.
            MOVE "012345678921"  TO NUMERO.
 
@@ -31,9 +33,8 @@
            DISPLAY TEXTO-EN  LINE LINEA POSITION 10.
            ADD 1 TO LINEA.
 
-           STOP  RUN.
 
-       STARTING.
+       LIBS-LOADER.
            CALL "LIBENTRY".
 
        END PROGRAM ENTRY.
