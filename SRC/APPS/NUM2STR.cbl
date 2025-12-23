@@ -2,11 +2,13 @@
        PROGRAM-ID.    NUM2STR.
        AUTHOR.        JULIAN VIDAL.
 
+
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        REPOSITORY.
            PROGRAM NUM2ES AS 'LIBESNUM2STR'
            PROGRAM NUM2EN AS 'LIBENNUM2STR'.
+
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
@@ -14,15 +16,14 @@
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
 
+
        PROCEDURE DIVISION.
            PERFORM   000-MAIN.
            STOP  RUN.
 
-
        000-MAIN.
            MOVE "012345678921"  TO NUMERO.
            PERFORM 000-TEST UNTIL NUMERO = ' '.
-
 
        000-TEST.
            CALL NUM2EN   USING NUMERO TEXTO-EN.
