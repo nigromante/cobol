@@ -1,5 +1,4 @@
 #!/bin/bash
 
-echo ------------------
-echo NUM2STR
-echo ------------------
+ls -al  ./SRC/APPS/*.cbl
+

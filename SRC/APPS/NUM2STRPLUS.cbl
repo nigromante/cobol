@@ -15,6 +15,7 @@
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
 
+       SCREEN SECTION.
        INCLUDE NUMBER-SCRN.
 
 

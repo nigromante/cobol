@@ -14,6 +14,7 @@
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
 
+       SCREEN SECTION.
        INCLUDE NUMBER-SCRN.
 
 
@@ -41,4 +42,6 @@
 
            MOVE 0 TO NUMERO.
            ACCEPT  INPUT-SCREEN.
+
+       END PROGRAM NUM2STRXTRA.
 
