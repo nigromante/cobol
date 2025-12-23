@@ -1,0 +1,44 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    NUM2STRXTRA.
+       AUTHOR.        JULIAN VIDAL.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       REPOSITORY.
+           PROGRAM LIBNUM2STR.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  NUMERO      PIC 9(12) BLANK WHEN ZERO.
+       01  NUMERO-CUR  PIC 9(12) BLANK WHEN ZERO.
+       01  TEXTO-EN    PIC x(2000).
+       01  TEXTO-ES    PIC x(2000).
+
+       INCLUDE NUMBER-SCRN.
+
+
+       PROCEDURE DIVISION.
+           PERFORM 000-START.
+           PERFORM 000-TEST.
+           STOP  RUN.
+
+       000-START.
+           CALL LIBNUM2STR.
+
+       000-TEST.
+           MOVE "1"  TO NUMERO.
+           MOVE  NUMERO  TO  NUMERO-CUR.
+
+           PERFORM 000-TEST-LOOP
+             UNTIL NUMERO = ' '.
+
+       000-TEST-LOOP.
+           CALL "EN-CONVERT"   USING NUMERO TEXTO-EN.
+           CALL "ES-CONVERT"   USING NUMERO TEXTO-ES.
+           MOVE  NUMERO  TO  NUMERO-CUR.
+
+           DISPLAY INPUT-SCREEN.
+
+           MOVE 0 TO NUMERO.
+           ACCEPT  INPUT-SCREEN.
+
