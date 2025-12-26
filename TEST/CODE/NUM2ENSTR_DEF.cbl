@@ -22,3 +22,4 @@
 
            77 W302-IDX     PIC  999.
 
+           77 W302-EOF     PIC   XX.
