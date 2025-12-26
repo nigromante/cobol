@@ -5,6 +5,8 @@
 
        302-INIT.
 
+           MOVE  "_#"            TO  W302-EOF.
+
            MOVE "ONE _"          TO  W302-UNIDADES(1).
            MOVE "TWO _"          TO  W302-UNIDADES(2).
            MOVE "THREE _"        TO  W302-UNIDADES(3).
@@ -40,28 +42,37 @@
        302-CDU-PARSE.
 
            IF W302-C > 0
+             STRING  W302-RESULT DELIMITED BY "_"
+               W302-UNIDADES(W302-C) DELIMITED BY "_"
+               W302-EOF  DELIMITED BY "#"
+               INTO W302-RESULT
 
-             MOVE W302-UNIDADES(W302-C) TO W300-In
-             PERFORM 300-COPY-STRING
-
-             MOVE "HUNDRED _" TO W300-In
-             PERFORM 300-COPY-STRING
+             STRING  W302-RESULT DELIMITED BY "_"
+               "HUNDRED _" DELIMITED BY "_"
+               W302-EOF  DELIMITED BY "#"
+               INTO W302-RESULT
            END-IF.
 
            IF W302-D > 0
              IF W302-D = 1 AND W302-U <> 0
-               MOVE W302-DECENAS-1(W302-U)   TO  W300-In
-               PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 W302-DECENAS-1(W302-U) DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
                MOVE 0 TO W302-U
              ELSE
-               MOVE W302-DECENAS(W302-D) TO W300-In
-               PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 W302-DECENAS(W302-D) DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
              END-IF
            END-IF.
 
            IF W302-U > 0
-             MOVE W302-UNIDADES(W302-U)   TO  W300-In
-             PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 W302-UNIDADES(W302-U) DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
            END-IF.
 
 
@@ -86,23 +97,29 @@
 
            IF (W302-PART = 1 AND W302-CDU > 0)
              PERFORM 302-CDU-PARSE
-             MOVE "BILLION _" TO W300-In
-             PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 "BILLION _" DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
            END-IF.
 
            IF (W302-PART = 2)
              COMPUTE W302-MILLAR = W302-CDU + W302-MILLAR
              IF W302-MILLAR > 0
                PERFORM 302-CDU-PARSE
-               MOVE "MILLION _" TO W300-In
-               PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 "MILLION _" DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
              END-IF
            END-IF.
 
            IF (W302-PART = 3 AND W302-CDU > 0)
                PERFORM 302-CDU-PARSE
-               MOVE "THOUSAND _" TO W300-In
-               PERFORM 300-COPY-STRING
+               STRING  W302-RESULT DELIMITED BY "_"
+                 "THOUSAND _" DELIMITED BY "_"
+                 W302-EOF  DELIMITED BY "#"
+                 INTO W302-RESULT
            END-IF.
 
            IF ( W302-PART = 4 AND W302-CDU > 0 )
@@ -113,16 +130,16 @@
 
        302-CONVERT.
 
-           MOVE  0   TO    W302-MILLAR.
+           MOVE "_" TO W302-RESULT.
 
-           PERFORM 300-RESET.
+           MOVE  0   TO    W302-MILLAR.
 
            PERFORM 302-SEGMENT
              VARYING W302-PART
              FROM 1 BY 1 UNTIL W302-PART > 4.
 
-           PERFORM 300-CUT-LAST-CHAR.
 
-           MOVE W300-Out TO W302-RESULT.
-
+            STRING  W302-RESULT DELIMITED BY "_"
+             " " DELIMiTED BY SIZE
+             INTO W302-RESULT.
 

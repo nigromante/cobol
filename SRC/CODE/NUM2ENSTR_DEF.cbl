@@ -1,4 +1,4 @@
-           77  W302-VERSION  PIC X(20) VALUE 'NUM2STR V 1.0'.
+           77  W302-VERSION  PIC X(20) VALUE 'NUM2ENSTR V 1.0'.
 
       *    Input/Output
            77 W302-NUMERO    PIC X(12).
@@ -22,3 +22,4 @@
 
            77 W302-IDX     PIC  999.
 
+           77 W302-EOF     PIC   XX.
