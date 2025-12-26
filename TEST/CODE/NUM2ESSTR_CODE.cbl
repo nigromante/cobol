@@ -93,10 +93,10 @@
            END-IF.
 
            IF W301-U > 0
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   W301-UNIDADES(W301-U) DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
+             STRING  W301-RESULT DELIMITED BY "_"
+               W301-UNIDADES(W301-U) DELIMITED BY "_"
+               W301-EOF  DELIMITED BY "#"
+               INTO W301-RESULT
            END-IF.
 
 

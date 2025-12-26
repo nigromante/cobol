@@ -22,6 +22,7 @@
            77 W301-MILLAR  PIC  999999 VALUE 0.
 
            77 W301-IDX     PIC  999.
+
            77 W301-EOF     PIC   XX.
 
 
