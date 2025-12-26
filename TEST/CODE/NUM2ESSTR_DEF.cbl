@@ -1,4 +1,4 @@
-           77  W301-VERSION  PIC X(20) VALUE 'NUM2STR V 1.0'.
+           77  W301-VERSION  PIC X(20) VALUE 'NUM2ESSTR V 1.0'.
 
       *    Input/Output
            77 W301-NUMERO    PIC X(12).
@@ -22,4 +22,6 @@
            77 W301-MILLAR  PIC  999999 VALUE 0.
 
            77 W301-IDX     PIC  999.
+           77 W301-EOF     PIC   XX.
+
 

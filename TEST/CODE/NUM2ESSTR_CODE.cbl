@@ -4,6 +4,8 @@
 
        301-INIT.
 
+           MOVE  "_#"              TO  W301-EOF.
+
            MOVE "UN _"             TO  W301-UNIDADES(1).
            MOVE "DOS _"            TO  W301-UNIDADES(2).
            MOVE "TRES _"           TO  W301-UNIDADES(3).
@@ -51,36 +53,50 @@
            IF W301-C > 0
              IF W301-C = 1
                IF W301-D= 0 AND W301-U = 0
-                 MOVE "CIEN _" TO W300-In
-                 PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "CIEN _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                ELSE
-                 MOVE "CIENTO _" TO W300-In
-                 PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "CIENTO _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                END-IF
              ELSE
-               MOVE W301-CENTENAS(W301-C) TO W300-In
-               PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   W301-CENTENAS(W301-C) DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
              END-IF
            END-IF.
 
            IF W301-D > 0
              IF W301-D = 1 AND W301-U <> 0
-               MOVE W301-DECENAS-1(W301-U)   TO  W300-In
-               PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   W301-DECENAS-1(W301-U) DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                MOVE 0 TO W301-U
              ELSE
-               MOVE W301-DECENAS(W301-D) TO W300-In
-               PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   W301-DECENAS(W301-D) DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                IF W301-U > 0
-                 MOVE "Y _" TO W300-In
-                 PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "Y _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                END-IF
              END-IF
            END-IF.
 
            IF W301-U > 0
-             MOVE W301-UNIDADES(W301-U)   TO  W300-In
-             PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   W301-UNIDADES(W301-U) DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
            END-IF.
 
 
@@ -112,8 +128,10 @@
                IF (W301-CDU > 1)
                  PERFORM 301-CDU-PARSE
                END-IF
-               MOVE "MIL _" TO W300-In
-               PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "MIL _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
              END-IF
            END-IF.
 
@@ -122,11 +140,15 @@
              IF W301-MILLAR > 0
                PERFORM 301-CDU-PARSE
                IF W301-MILLAR > 1
-                 MOVE "MILLONES _" TO W300-In
-                 PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "MILLONES _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                ELSE
-                 MOVE "MILLON _" TO W300-In
-                 PERFORM 300-COPY-STRING
+                 STRING  W301-RESULT DELIMITED BY "_"
+                   "MILLON _" DELIMITED BY "_"
+                   W301-EOF  DELIMITED BY "#"
+                 INTO W301-RESULT
                END-IF
              END-IF
            END-IF.
@@ -138,16 +160,16 @@
 
        301-CONVERT.
 
-           MOVE  0   TO    W301-MILLAR.
+           MOVE "_" TO W301-RESULT.
 
-           PERFORM 300-RESET.
+           MOVE  0   TO    W301-MILLAR.
 
            PERFORM 301-SEGMENT
              VARYING W301-PART
              FROM 1 BY 1 UNTIL W301-PART > 4.
 
-           PERFORM 300-CUT-LAST-CHAR.
 
-           MOVE W300-Out TO W301-RESULT.
-
+            STRING  W301-RESULT DELIMITED BY "_"
+             " " DELIMiTED BY SIZE
+             INTO W301-RESULT.
 
