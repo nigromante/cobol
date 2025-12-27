@@ -16,7 +16,7 @@
        PROCEDURE DIVISION.
            PERFORM   301-INIT.
            PERFORM   302-INIT.
-           goback.
+           GOBACK.
 
 
        ENTRY "EN-CONVERT" USING NUMERO TEXTO.
@@ -34,3 +34,4 @@
        INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2ESSTR_CODE.
 
+       END PROGRAM LIBNUM2STR.

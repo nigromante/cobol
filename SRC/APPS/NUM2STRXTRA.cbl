@@ -45,3 +45,4 @@
            MOVE 0 TO NUMERO.
            ACCEPT  INPUT-SCREEN.
 
+       END PROGRAM NUM2STRXTRA.
