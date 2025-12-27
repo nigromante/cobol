@@ -11,6 +11,7 @@
        LINKAGE SECTION.
            77  NUMERO  PIC X(12).
            77  TEXTO   PIC X(2000).
+           77  VERSION PIC X(20).
 
 
        PROCEDURE DIVISION.
@@ -19,10 +20,19 @@
            GOBACK.
 
 
+       ENTRY "EN-VERSION" USING VERSION.
+           MOVE W302-VERSION TO  VERSION.
+           GOBACK.
+
        ENTRY "EN-CONVERT" USING NUMERO TEXTO.
            MOVE NUMERO   TO W302-NUMERO.
            PERFORM 302-CONVERT.
            MOVE W302-RESULT TO  TEXTO.
+           GOBACK.
+
+
+       ENTRY "ES-VERSION" USING VERSION.
+           MOVE W301-VERSION TO  VERSION.
            GOBACK.
 
        ENTRY "ES-CONVERT" USING NUMERO TEXTO.

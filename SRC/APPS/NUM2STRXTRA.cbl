@@ -15,6 +15,8 @@
        01  NUMERO-CUR  PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
+       01  VERSION-EN  PIC X(20).
+       01  VERSION-ES  PIC X(20).
 
        SCREEN SECTION.
        INCLUDE NUMBER-SCRN.
@@ -27,6 +29,8 @@
 
        000-START.
            CALL LIBNUM2STR.
+           CALL "EN-VERSION"   USING VERSION-EN.
+           CALL "ES-VERSION"   USING VERSION-ES.
 
        000-TEST.
            MOVE "1"  TO NUMERO.
