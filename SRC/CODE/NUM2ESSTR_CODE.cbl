@@ -1,6 +1,3 @@
-       301-VERSION.
-           DISPLAY "VERSION : "  LINE 2  POSITION 10.
-           DISPLAY W301-VERSION  LINE 2  POSITION 20.
 
        301-INIT.
 
