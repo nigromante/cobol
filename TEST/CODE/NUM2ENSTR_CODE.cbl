@@ -1,8 +1,4 @@
 
-       302-VERSION.
-           DISPLAY "VERSION : "  LINE 2  POSITION 10.
-           DISPLAY W302-VERSION  LINE 2  POSITION 20.
-
        302-INIT.
 
            MOVE  "_#"            TO  W302-EOF.

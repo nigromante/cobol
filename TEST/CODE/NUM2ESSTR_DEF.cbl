@@ -1,4 +1,4 @@
-           77  W301-VERSION  PIC X(20) VALUE 'NUM2ESSTR V 1.0'.
+           77  W301-VERSION  PIC X(20) VALUE 'NUM2ESSTR (1.0)'.
 
       *    Input/Output
            77 W301-NUMERO    PIC X(12).
