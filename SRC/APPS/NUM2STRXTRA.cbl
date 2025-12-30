@@ -35,10 +35,14 @@
            STOP  RUN.
 
        000-START.
+      *    *****************************************
       *    CARGAR LA LIBRERIA
+      *    *****************************************
            CALL LIBNUM2STR.
 
+      *    *****************************************
       *    LLAMAR FUNCiONES DE VERSIONES
+      *    *****************************************
            CALL "EN-VERSION"   USING VERSION-EN.
            CALL "ES-VERSION"   USING VERSION-ES.
 
@@ -51,7 +55,9 @@
 
        000-TEST-LOOP.
 
+      *    *****************************************
       *    LLAMAR FUNCIONES DE MONTO ESCRITO
+      *    *****************************************
            CALL "EN-CONVERT"   USING NUMERO-INP TEXTO-EN.
            CALL "ES-CONVERT"   USING NUMERO-INP TEXTO-ES.
 
@@ -63,3 +69,4 @@
            ACCEPT  INPUT-SCREEN.
 
        END PROGRAM NUM2STRXTRA.
+
