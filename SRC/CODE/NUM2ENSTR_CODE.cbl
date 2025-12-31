@@ -93,29 +93,26 @@
 
            IF (W302-PART = 1 AND W302-CDU > 0)
              PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
-                 "BILLION _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
+             STRING  W302-RESULT DELIMITED BY "_"
+               "BILLION _" DELIMITED BY "_"
+               W302-EOF  DELIMITED BY "#"
+               INTO W302-RESULT
            END-IF.
 
-           IF (W302-PART = 2)
-             COMPUTE W302-MILLAR = W302-CDU + W302-MILLAR
-             IF W302-MILLAR > 0
-               PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
-                 "MILLION _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
-             END-IF
+           IF (W302-PART = 2 AND W302-CDU > 0)
+             PERFORM 302-CDU-PARSE
+             STRING  W302-RESULT DELIMITED BY "_"
+               "MILLION _" DELIMITED BY "_"
+               W302-EOF  DELIMITED BY "#"
+               INTO W302-RESULT
            END-IF.
 
            IF (W302-PART = 3 AND W302-CDU > 0)
-               PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
-                 "THOUSAND _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
+             PERFORM 302-CDU-PARSE
+             STRING  W302-RESULT DELIMITED BY "_"
+               "THOUSAND _" DELIMITED BY "_"
+               W302-EOF  DELIMITED BY "#"
+               INTO W302-RESULT
            END-IF.
 
            IF ( W302-PART = 4 AND W302-CDU > 0 )
