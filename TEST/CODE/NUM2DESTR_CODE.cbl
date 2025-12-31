@@ -54,7 +54,7 @@
                INTO W303-RESULT
            END-IF.
 
-           IF W303-U > 0
+           IF W303-U > 0  AND W303-D <> 1
              STRING  W303-RESULT DELIMITED BY "_"
                W303-UNIDADES(W303-U) DELIMITED BY "_"
                W303-EOF  DELIMITED BY "#"
