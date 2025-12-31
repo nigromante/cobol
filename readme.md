@@ -1,4 +1,4 @@
-
+# COBOL Ejemplos
 
 List Apps
   ./SCRIPTS/RELEASE/list.sh
@@ -26,3 +26,8 @@ Execute {APP}
 Compile {APP}
   ./SCRIPTS/TEST/compile.sh {APP}
 
+
+
+## Rutinas de Monto Escrito
+
+<img src="capture.png" align="right"/>
