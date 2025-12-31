@@ -1,9 +1,11 @@
       *    *****************************************
       *    LIBRERIA :  MONTO ESCRITO
-      *    OBJETIVO:
+      *    OBJETIVO :
       *      PERMITE OBTENER REPRESENTACION EN TEXTO
-      *      DE NUMEROS.
-      *
+      *      DE NUMEROS PARA LOS IDIOMAS SIGTES.
+      *        - ESPAÑOL
+      *        - INGLES
+      *        - ALEMAN
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
@@ -42,22 +44,6 @@
            PERFORM   303-INIT.
            GOBACK.
 
-      *    *****************************************
-      *    EN-VERSION
-      *      CALL "EN-VERSION"   USING VERSION-EN.
-      *    *****************************************
-       ENTRY "EN-VERSION" USING VERSION.
-           MOVE W302-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    EN-CONVERT
-      *    *****************************************
-       ENTRY "EN-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W302-NUMERO.
-           PERFORM 302-CONVERT.
-           MOVE W302-RESULT TO  TEXTO.
-           GOBACK.
 
 
       *    *****************************************
@@ -78,6 +64,26 @@
            GOBACK.
 
 
+
+      *    *****************************************
+      *    EN-VERSION
+      *      CALL "EN-VERSION"   USING VERSION-EN.
+      *    *****************************************
+       ENTRY "EN-VERSION" USING VERSION.
+           MOVE W302-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    EN-CONVERT
+      *    *****************************************
+       ENTRY "EN-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W302-NUMERO.
+           PERFORM 302-CONVERT.
+           MOVE W302-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
       *    *****************************************
       *    DE-VERSION
       *      CALL "DE-VERSION"   USING VERSION-DE.
@@ -96,6 +102,7 @@
            GOBACK.
 
 
+
       *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
@@ -105,3 +112,4 @@
        INCLUDE NUM2DESTR_CODE.
 
        END PROGRAM LIBNUM2STR.
+
