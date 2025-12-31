@@ -1,7 +1,7 @@
 
        301-TRACE-RESULT.
            MOVE "STRCAT"     TO W001-Title.
-           MOVE W300-Out     TO W001-Buffer.
+           MOVE W301-RESULT     TO W001-Buffer.
            MOVE W300-Out-len TO W001-Buffer-Len.
            PERFORM 001-TRACE.
            DISPLAY " ".
@@ -17,7 +17,8 @@
        301-TEST-BODY.
            PERFORM 301-TRACE-INPUT.
            PERFORM 301-CONVERT.
-           PERFORM 301-TRACE-RESULT.
+           DISPLAY W301-RESULT.
+      * PERFORM 301-TRACE-RESULT.
 
 
        301-TEST.
