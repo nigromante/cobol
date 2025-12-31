@@ -1,30 +1,19 @@
 # COBOL Ejemplos
 
-List Apps
-  ./SCRIPTS/RELEASE/list.sh
 
-Compile Libraries
-  ./SCRIPTS/RELEASE/lib.sh
+| Command                             | Description             |
+| ----------------------------------- | ----------------------- |
+|  ./SCRIPTS/RELEASE/list.sh          | List apps availables    |
+|  ./SCRIPTS/RELEASE/lib.sh           | Compile Libraries       |
+|  ./SCRIPTS/RELEASE/run.sh {APP}     | Execute {APP}           |
+|  ./SCRIPTS/RELEASE/compile.sh {APP} | Compile {APP}           |
 
-Execute {APP}
-  ./SCRIPTS/RELEASE/run.sh {APP}
-
-Compile {APP}
-  ./SCRIPTS/RELEASE/compile.sh {APP}
-
-
-
-List Apps
-  ./SCRIPTS/TEST/list.sh
-
-Compile Libraries
-  ./SCRIPTS/TEST/lib.sh
-
-Execute {APP}
-  ./SCRIPTS/TEST/run.sh {APP}
-
-Compile {APP}
-  ./SCRIPTS/TEST/compile.sh {APP}
+| Command                             | Description             |
+| ----------------------------------- | ----------------------- |
+|  ./SCRIPTS/TEST/list.sh             | List apps availables    |
+|  ./SCRIPTS/TEST/lib.sh              | Compile Libraries       |
+|  ./SCRIPTS/TEST/run.sh {APP}        | Execute {APP}           |
+|  ./SCRIPTS/TEST/compile.sh {APP}    | Compile {APP}           |
 
 
 
