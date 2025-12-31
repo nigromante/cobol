@@ -12,10 +12,15 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01  NUMERO      PIC 9(12) BLANK WHEN ZERO.
+       01  NUMERO-INP  PIC 9(12) BLANK WHEN ZERO.
        01  NUMERO-CUR  PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
+       01  TEXTO-DE    PIC x(2000).
+       01  VERSION-EN  PIC X(20).
+       01  VERSION-ES  PIC X(20).
+       01  VERSION-DE  PIC X(20).
+       01  VERSION-APP PIC X(20) VALUE "NUM2STRPLUS (1.0)".
 
        SCREEN SECTION.
        INCLUDE NUMBER-SCRN.
@@ -23,21 +28,21 @@
 
        PROCEDURE DIVISION.
 
-           MOVE "1"  TO NUMERO.
-           MOVE  NUMERO  TO  NUMERO-CUR.
+           MOVE "1"  TO NUMERO-INP.
+           MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
            PERFORM 000-TEST
-             UNTIL NUMERO = ' '.
+             UNTIL NUMERO-INP = ' '.
 
            STOP  RUN.
 
        000-TEST.
-           CALL NUM2EN   USING NUMERO TEXTO-EN.
-           CALL NUM2ES   USING NUMERO TEXTO-ES.
-           MOVE  NUMERO  TO  NUMERO-CUR.
+           CALL NUM2EN   USING NUMERO-INP TEXTO-EN.
+           CALL NUM2ES   USING NUMERO-INP TEXTO-ES.
+           MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
            DISPLAY INPUT-SCREEN.
 
-           MOVE 0 TO NUMERO.
+           MOVE 0 TO NUMERO-INP.
            ACCEPT  INPUT-SCREEN.
 
