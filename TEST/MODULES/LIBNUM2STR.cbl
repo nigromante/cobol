@@ -6,6 +6,7 @@
       *        - ESPAÑOL
       *        - INGLES
       *        - ALEMAN
+      *        - FRANCES
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
@@ -20,6 +21,7 @@
            INCLUDE NUM2ENSTR_DEF.
            INCLUDE NUM2ESSTR_DEF.
            INCLUDE NUM2DESTR_DEF.
+           INCLUDE NUM2FRSTR_DEF.
 
 
       *    *****************************************
@@ -42,6 +44,7 @@
            PERFORM   301-INIT.
            PERFORM   302-INIT.
            PERFORM   303-INIT.
+           PERFORM   304-INIT.
            GOBACK.
 
 
@@ -104,12 +107,32 @@
 
 
       *    *****************************************
+      *    FR-VERSION
+      *      CALL "FR-VERSION"   USING VERSION-DE.
+      *    *****************************************
+       ENTRY "FR-VERSION" USING VERSION.
+           MOVE W304-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    ES-CONVER
+      *    *****************************************
+       ENTRY "FR-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W304-NUMERO.
+           PERFORM 304-CONVERT.
+           MOVE W304-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
+      *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
       *    *****************************************
        INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2ESSTR_CODE.
        INCLUDE NUM2DESTR_CODE.
+       INCLUDE NUM2FRSTR_CODE.
 
        END PROGRAM LIBNUM2STR.
 
