@@ -27,3 +27,8 @@
            77 W305-EOF     PIC   XX.
 
 
+           77 W305-IDX2  PIC  999.
+           77 W305-U2    PIC 9.
+           77 W305-D2    PIC 9.
+           77 W305-C2    PIC 9.
+           77 W305-CDU2  PIC  999999 VALUE 0.

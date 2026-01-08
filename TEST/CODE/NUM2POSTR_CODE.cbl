@@ -125,9 +125,24 @@
            COMPUTE W305-DU  = W305-D * 10 + W305-U.
 
 
+       305-CDU-CALC-2.
+           IF W305-PART = 1 OR W305-PART = 3
+             COMPUTE W305-IDX2 = 3 * (W305-PART - 0) + 1
+
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-C2
+             ADD 1 TO W305-IDX2
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-D2
+             ADD 1 TO W305-IDX2
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-U2
+
+             COMPUTE W305-CDU2 = W305-C2*100 + W305-D2*10 + W305-U2
+           END-IF.
+
+
        305-SEGMENT.
 
            PERFORM 305-CDU-CALC.
+           PERFORM 305-CDU-CALC-2.
 
            IF (W305-PART = 1 OR W305-PART = 3)
 
@@ -143,6 +158,12 @@
                    "MIL _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
+                IF W305-CDU2 > 0
+                 STRING  W305-RESULT DELIMITED BY "_"
+                   "E _" DELIMITED BY "_"
+                   W305-EOF  DELIMITED BY "#"
+                 INTO W305-RESULT
+                END-IF
              END-IF
            END-IF.
 
