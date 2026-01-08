@@ -3,60 +3,60 @@
 
            MOVE  "_#"              TO  W305-EOF.
 
-           MOVE "UN _"             TO  W305-UNIDADES(1).
-           MOVE "DOS _"            TO  W305-UNIDADES(2).
+           MOVE "UM _"             TO  W305-UNIDADES(1).
+           MOVE "DOIS _"           TO  W305-UNIDADES(2).
            MOVE "TRES _"           TO  W305-UNIDADES(3).
-           MOVE "CUATRO _"         TO  W305-UNIDADES(4).
+           MOVE "QUATRO _"         TO  W305-UNIDADES(4).
            MOVE "CINCO _"          TO  W305-UNIDADES(5).
            MOVE "SEIS _"           TO  W305-UNIDADES(6).
-           MOVE "SIETE _"          TO  W305-UNIDADES(7).
-           MOVE "OCHO _"           TO  W305-UNIDADES(8).
-           MOVE "NUEVE _"          TO  W305-UNIDADES(9).
+           MOVE "SETE _"           TO  W305-UNIDADES(7).
+           MOVE "OITO _"           TO  W305-UNIDADES(8).
+           MOVE "NOVE _"           TO  W305-UNIDADES(9).
 
-           MOVE "ONCE _"           TO  W305-DECENAS-1(1).
-           MOVE "DOCE _"           TO  W305-DECENAS-1(2).
-           MOVE "TRECE _"          TO  W305-DECENAS-1(3).
-           MOVE "CATORCE _"        TO  W305-DECENAS-1(4).
-           MOVE "QUINCE _"         TO  W305-DECENAS-1(5).
-           MOVE "DIECISEIS _"      TO  W305-DECENAS-1(6).
-           MOVE "DIECISIETE _"     TO  W305-DECENAS-1(7).
-           MOVE "DIECIOCHO _"      TO  W305-DECENAS-1(8).
-           MOVE "DIECINUEVE _"     TO  W305-DECENAS-1(9).
+           MOVE "ONZE _"           TO  W305-DECENAS-1(1).
+           MOVE "DOZE _"           TO  W305-DECENAS-1(2).
+           MOVE "TREZE _"          TO  W305-DECENAS-1(3).
+           MOVE "QUATORZE _"       TO  W305-DECENAS-1(4).
+           MOVE "QUINZE _"         TO  W305-DECENAS-1(5).
+           MOVE "DEZESEIS _"       TO  W305-DECENAS-1(6).
+           MOVE "DEZESETE _"       TO  W305-DECENAS-1(7).
+           MOVE "DEZOITO _"        TO  W305-DECENAS-1(8).
+           MOVE "DEZENOVE _"       TO  W305-DECENAS-1(9).
 
-           MOVE "DIEZ _"           TO  W305-DECENAS(1).
-           MOVE "VEINTE _"         TO  W305-DECENAS(2).
-           MOVE "TREINTA _"        TO  W305-DECENAS(3).
-           MOVE "CUARENTA _"       TO  W305-DECENAS(4).
-           MOVE "CINCUENTA _"      TO  W305-DECENAS(5).
-           MOVE "SESENTA _"        TO  W305-DECENAS(6).
+           MOVE "DEZ _"            TO  W305-DECENAS(1).
+           MOVE "VINTE _"          TO  W305-DECENAS(2).
+           MOVE "TRINTA _"         TO  W305-DECENAS(3).
+           MOVE "QUARENTA _"       TO  W305-DECENAS(4).
+           MOVE "CINQUENTA _"      TO  W305-DECENAS(5).
+           MOVE "SESSENTA _"       TO  W305-DECENAS(6).
            MOVE "SETENTA _"        TO  W305-DECENAS(7).
-           MOVE "OCHENTA _"        TO  W305-DECENAS(8).
+           MOVE "OITENTA _"        TO  W305-DECENAS(8).
            MOVE "NOVENTA _"        TO  W305-DECENAS(9).
 
-           MOVE "CIEN _"           TO  W305-CENTENAS(1).
-           MOVE "DOSCIENTOS _"     TO  W305-CENTENAS(2).
-           MOVE "TRESCIENTOS _"    TO  W305-CENTENAS(3).
-           MOVE "CUATROCIENTOS _"  TO  W305-CENTENAS(4).
-           MOVE "QUINIENTOS _"     TO  W305-CENTENAS(5).
-           MOVE "SEISCIENTOS _"    TO  W305-CENTENAS(6).
-           MOVE "SETECIENTOS _"    TO  W305-CENTENAS(7).
-           MOVE "OCHOCIENTOS _"    TO  W305-CENTENAS(8).
-           MOVE "NOVECIENTOS _"    TO  W305-CENTENAS(9).
+           MOVE "CEM _"            TO  W305-CENTENAS(1).
+           MOVE "DUZENTOS _"       TO  W305-CENTENAS(2).
+           MOVE "TREZENTOS _"      TO  W305-CENTENAS(3).
+           MOVE "QUATROCENTOS _"   TO  W305-CENTENAS(4).
+           MOVE "QUINHENTOS _"     TO  W305-CENTENAS(5).
+           MOVE "SEISCENTOS _"     TO  W305-CENTENAS(6).
+           MOVE "SETECENTOS _"     TO  W305-CENTENAS(7).
+           MOVE "OITOCENTOS _"     TO  W305-CENTENAS(8).
+           MOVE "NOVOCENTOS _"     TO  W305-CENTENAS(9).
 
 
 
-       305-CDU-PARSE.
+       305-CDU-PARSE-C.
 
            IF W305-C > 0
              IF W305-C = 1
                IF W305-D= 0 AND W305-U = 0
                  STRING  W305-RESULT DELIMITED BY "_"
-                   "CIEN _" DELIMITED BY "_"
+                   "CEM _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
                ELSE
                  STRING  W305-RESULT DELIMITED BY "_"
-                   "CIENTO _" DELIMITED BY "_"
+                   "CENTO _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
                END-IF
@@ -66,7 +66,17 @@
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
              END-IF
+
+             IF W305-DU > 0
+                 STRING  W305-RESULT DELIMITED BY "_"
+                   "E _" DELIMITED BY "_"
+                   W305-EOF  DELIMITED BY "#"
+                 INTO W305-RESULT
+             END-IF
            END-IF.
+
+
+       305-CDU-PARSE-D.
 
            IF W305-D > 0
              IF W305-D = 1 AND W305-U <> 0
@@ -82,12 +92,15 @@
                  INTO W305-RESULT
                IF W305-U > 0
                  STRING  W305-RESULT DELIMITED BY "_"
-                   "Y _" DELIMITED BY "_"
+                   "E _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
                END-IF
              END-IF
            END-IF.
+
+
+       305-CDU-PARSE-U.
 
            IF W305-U > 0
              STRING  W305-RESULT DELIMITED BY "_"
@@ -109,6 +122,7 @@
            MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-U.
 
            COMPUTE W305-CDU = W305-C * 100 + W305-D * 10 + W305-U.
+           COMPUTE W305-DU  = W305-D * 10 + W305-U.
 
 
        305-SEGMENT.
@@ -123,7 +137,7 @@
 
              IF (W305-CDU > 0)
                IF (W305-CDU > 1)
-                 PERFORM 305-CDU-PARSE
+                 PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
                END-IF
                  STRING  W305-RESULT DELIMITED BY "_"
                    "MIL _" DELIMITED BY "_"
@@ -135,15 +149,15 @@
            IF (W305-PART = 2)
              COMPUTE W305-MILLAR = W305-CDU + W305-MILLAR
              IF W305-MILLAR > 0
-               PERFORM 305-CDU-PARSE
+               PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
                IF W305-MILLAR > 1
                  STRING  W305-RESULT DELIMITED BY "_"
-                   "MILLONES _" DELIMITED BY "_"
+                   "MILHOES _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
                ELSE
                  STRING  W305-RESULT DELIMITED BY "_"
-                   "MILLON _" DELIMITED BY "_"
+                   "MILHAO _" DELIMITED BY "_"
                    W305-EOF  DELIMITED BY "#"
                  INTO W305-RESULT
                END-IF
@@ -151,7 +165,7 @@
            END-IF.
 
            IF ( W305-PART = 4 AND W305-CDU > 0 )
-               PERFORM 305-CDU-PARSE
+               PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
            END-IF.
 
 

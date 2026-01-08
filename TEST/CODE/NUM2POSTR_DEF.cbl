@@ -19,6 +19,7 @@
 
            77 W305-PART    PIC  9.
            77 W305-CDU     PIC  999999 VALUE 0.
+           77 W305-DU      PIC  999999 VALUE 0.
            77 W305-MILLAR  PIC  999999 VALUE 0.
 
            77 W305-IDX     PIC  999.
