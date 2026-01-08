@@ -7,6 +7,7 @@
       *        - INGLES
       *        - ALEMAN
       *        - FRANCES
+      *        - PORTUGUES
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
@@ -22,6 +23,7 @@
            INCLUDE NUM2ESSTR_DEF.
            INCLUDE NUM2DESTR_DEF.
            INCLUDE NUM2FRSTR_DEF.
+           INCLUDE NUM2POSTR_DEF.
 
 
       *    *****************************************
@@ -45,6 +47,7 @@
            PERFORM   302-INIT.
            PERFORM   303-INIT.
            PERFORM   304-INIT.
+           PERFORM   305-INIT.
            GOBACK.
 
 
@@ -96,7 +99,7 @@
            GOBACK.
 
       *    *****************************************
-      *    ES-CONVER
+      *    DE-CONVERT
       *    *****************************************
        ENTRY "DE-CONVERT" USING NUMERO TEXTO.
            MOVE NUMERO   TO W303-NUMERO.
@@ -108,14 +111,14 @@
 
       *    *****************************************
       *    FR-VERSION
-      *      CALL "FR-VERSION"   USING VERSION-DE.
+      *      CALL "FR-VERSION"   USING VERSION-FR.
       *    *****************************************
        ENTRY "FR-VERSION" USING VERSION.
            MOVE W304-VERSION TO  VERSION.
            GOBACK.
 
       *    *****************************************
-      *    ES-CONVER
+      *    FR-CONVERT
       *    *****************************************
        ENTRY "FR-CONVERT" USING NUMERO TEXTO.
            MOVE NUMERO   TO W304-NUMERO.
@@ -126,6 +129,23 @@
 
 
       *    *****************************************
+      *    PO-VERSION
+      *      CALL "PO-VERSION"   USING VERSION-PO.
+      *    *****************************************
+       ENTRY "PO-VERSION" USING VERSION.
+           MOVE W305-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    PO-CONVERT
+      *    *****************************************
+       ENTRY "PO-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W305-NUMERO.
+           PERFORM 305-CONVERT.
+           MOVE W305-RESULT TO  TEXTO.
+           GOBACK.
+
+      *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
       *    *****************************************
@@ -133,6 +153,7 @@
        INCLUDE NUM2ESSTR_CODE.
        INCLUDE NUM2DESTR_CODE.
        INCLUDE NUM2FRSTR_CODE.
+       INCLUDE NUM2POSTR_CODE.
 
        END PROGRAM LIBNUM2STR.
 
