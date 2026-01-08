@@ -1,9 +1,12 @@
       *    *****************************************
       *    LIBRERIA :  MONTO ESCRITO
-      *    OBJETIVO:
+      *    OBJETIVO :
       *      PERMITE OBTENER REPRESENTACION EN TEXTO
-      *      DE NUMEROS.
-      *
+      *      DE NUMEROS PARA LOS IDIOMAS SIGTES.
+      *        - ESPAÑOL
+      *        - INGLES
+      *        - ALEMAN
+      *        - FRANCES
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
@@ -17,6 +20,8 @@
       *    *****************************************
            INCLUDE NUM2ENSTR_DEF.
            INCLUDE NUM2ESSTR_DEF.
+           INCLUDE NUM2DESTR_DEF.
+           INCLUDE NUM2FRSTR_DEF.
 
 
       *    *****************************************
@@ -38,24 +43,10 @@
        PROCEDURE DIVISION.
            PERFORM   301-INIT.
            PERFORM   302-INIT.
+           PERFORM   303-INIT.
+           PERFORM   304-INIT.
            GOBACK.
 
-      *    *****************************************
-      *    EN-VERSION
-      *      CALL "EN-VERSION"   USING VERSION-EN.
-      *    *****************************************
-       ENTRY "EN-VERSION" USING VERSION.
-           MOVE W302-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    EN-CONVERT
-      *    *****************************************
-       ENTRY "EN-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W302-NUMERO.
-           PERFORM 302-CONVERT.
-           MOVE W302-RESULT TO  TEXTO.
-           GOBACK.
 
 
       *    *****************************************
@@ -75,11 +66,73 @@
            MOVE W301-RESULT TO  TEXTO.
            GOBACK.
 
+
+
+      *    *****************************************
+      *    EN-VERSION
+      *      CALL "EN-VERSION"   USING VERSION-EN.
+      *    *****************************************
+       ENTRY "EN-VERSION" USING VERSION.
+           MOVE W302-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    EN-CONVERT
+      *    *****************************************
+       ENTRY "EN-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W302-NUMERO.
+           PERFORM 302-CONVERT.
+           MOVE W302-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
+      *    *****************************************
+      *    DE-VERSION
+      *      CALL "DE-VERSION"   USING VERSION-DE.
+      *    *****************************************
+       ENTRY "DE-VERSION" USING VERSION.
+           MOVE W303-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    ES-CONVER
+      *    *****************************************
+       ENTRY "DE-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W303-NUMERO.
+           PERFORM 303-CONVERT.
+           MOVE W303-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
+      *    *****************************************
+      *    FR-VERSION
+      *      CALL "FR-VERSION"   USING VERSION-DE.
+      *    *****************************************
+       ENTRY "FR-VERSION" USING VERSION.
+           MOVE W304-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    ES-CONVER
+      *    *****************************************
+       ENTRY "FR-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W304-NUMERO.
+           PERFORM 304-CONVERT.
+           MOVE W304-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
       *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
       *    *****************************************
        INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2ESSTR_CODE.
+       INCLUDE NUM2DESTR_CODE.
+       INCLUDE NUM2FRSTR_CODE.
 
        END PROGRAM LIBNUM2STR.
+

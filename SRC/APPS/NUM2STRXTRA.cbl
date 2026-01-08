@@ -18,8 +18,12 @@
        01  NUMERO-CUR  PIC 9(12) BLANK WHEN ZERO.
        01  TEXTO-EN    PIC x(2000).
        01  TEXTO-ES    PIC x(2000).
+       01  TEXTO-DE    PIC x(2000).
+       01  TEXTO-FR    PIC x(2000).
        01  VERSION-EN  PIC X(20).
        01  VERSION-ES  PIC X(20).
+       01  VERSION-DE  PIC X(20).
+       01  VERSION-FR  PIC X(20).
        01  VERSION-APP PIC X(20) VALUE "NUM2STRXTRA (1.0)".
 
        SCREEN SECTION.
@@ -35,16 +39,14 @@
            STOP  RUN.
 
        000-START.
-      *    *****************************************
       *    CARGAR LA LIBRERIA
-      *    *****************************************
            CALL LIBNUM2STR.
 
-      *    *****************************************
-      *    LLAMAR FUNCiONES DE VERSIONES
-      *    *****************************************
+      *    LLAMAR FUNCIONES DE VERSIONES
            CALL "EN-VERSION"   USING VERSION-EN.
            CALL "ES-VERSION"   USING VERSION-ES.
+           CALL "DE-VERSION"   USING VERSION-DE.
+           CALL "FR-VERSION"   USING VERSION-FR.
 
        000-TEST.
            MOVE "1"          TO  NUMERO-INP.
@@ -55,11 +57,11 @@
 
        000-TEST-LOOP.
 
-      *    *****************************************
       *    LLAMAR FUNCIONES DE MONTO ESCRITO
-      *    *****************************************
            CALL "EN-CONVERT"   USING NUMERO-INP TEXTO-EN.
            CALL "ES-CONVERT"   USING NUMERO-INP TEXTO-ES.
+           CALL "DE-CONVERT"   USING NUMERO-INP TEXTO-DE.
+           CALL "FR-CONVERT"   USING NUMERO-INP TEXTO-FR.
 
            MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
@@ -69,4 +71,3 @@
            ACCEPT  INPUT-SCREEN.
 
        END PROGRAM NUM2STRXTRA.
-
