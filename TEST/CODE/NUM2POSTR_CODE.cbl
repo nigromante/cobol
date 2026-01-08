@@ -45,6 +45,38 @@
 
 
 
+       305-CDU-CALC.
+
+           COMPUTE W305-IDX = 3 * (W305-PART - 1) + 1.
+
+           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-C.
+           ADD 1 TO W305-IDX.
+           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-D.
+           ADD 1 TO W305-IDX.
+           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-U.
+
+           COMPUTE W305-CDU = W305-C * 100 + W305-D * 10 + W305-U.
+           COMPUTE W305-DU  = W305-D * 10 + W305-U.
+
+
+       305-CDU-CALC-2.
+
+           IF W305-PART = 1 OR W305-PART = 3
+             COMPUTE W305-IDX2 = 3 * (W305-PART - 0) + 1
+
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-C2
+             ADD 1 TO W305-IDX2
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-D2
+             ADD 1 TO W305-IDX2
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-U2
+
+             COMPUTE W305-CDU2 = W305-C2*100 + W305-D2*10 + W305-U2
+             COMPUTE W305-DU2  = W305-D2*10 + W305-U2
+           END-IF.
+
+
+
+
        305-CDU-PARSE-C.
 
            IF W305-C > 0
@@ -111,83 +143,67 @@
 
 
 
-       305-CDU-CALC.
+       305-1-PART.
+           PERFORM 305-CDU-CALC THROUGH 305-CDU-CALC-2.
 
-           COMPUTE W305-IDX = 3 * (W305-PART - 1) + 1.
-
-           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-C.
-           ADD 1 TO W305-IDX.
-           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-D.
-           ADD 1 TO W305-IDX.
-           MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-U.
-
-           COMPUTE W305-CDU = W305-C * 100 + W305-D * 10 + W305-U.
-           COMPUTE W305-DU  = W305-D * 10 + W305-U.
-
-
-       305-CDU-CALC-2.
-           IF W305-PART = 1 OR W305-PART = 3
-             COMPUTE W305-IDX2 = 3 * (W305-PART - 0) + 1
-
-             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-C2
-             ADD 1 TO W305-IDX2
-             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-D2
-             ADD 1 TO W305-IDX2
-             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX2)) TO W305-U2
-
-             COMPUTE W305-CDU2 = W305-C2*100 + W305-D2*10 + W305-U2
-           END-IF.
-
-
-       305-SEGMENT.
-
-           PERFORM 305-CDU-CALC.
-           PERFORM 305-CDU-CALC-2.
-
-           IF (W305-PART = 1 OR W305-PART = 3)
-
-             IF (W305-PART = 1)
-               COMPUTE W305-MILLAR = W305-CDU * 1000
-             END-IF
-
-             IF (W305-CDU > 0)
-               IF (W305-CDU > 1)
-                 PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-               END-IF
-                 STRING  W305-RESULT DELIMITED BY "_"
-                   "MIL _" DELIMITED BY "_"
-                   W305-EOF  DELIMITED BY "#"
-                 INTO W305-RESULT
-                IF W305-CDU2 > 0
-                 STRING  W305-RESULT DELIMITED BY "_"
-                   "E _" DELIMITED BY "_"
-                   W305-EOF  DELIMITED BY "#"
-                 INTO W305-RESULT
-                END-IF
+           IF ( W305-PART = 1 AND W305-CDU > 0 )
+             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
+             IF W305-CDU > 1
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "BILHOES _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
+             ELSE
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "BILHAO _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
              END-IF
            END-IF.
 
-           IF (W305-PART = 2)
-             COMPUTE W305-MILLAR = W305-CDU + W305-MILLAR
-             IF W305-MILLAR > 0
+
+       305-2-PART.
+           IF (W305-PART = 2 AND W305-CDU > 0 )
+             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
+             IF W305-CDU > 1
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "MILHOES _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
+             ELSE
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "MILHAO _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
+             END-IF
+           END-IF.
+
+
+       305-3-PART.
+           IF ( W305-PART = 3 AND W305-CDU >0 )
+             IF (W305-CDU > 1)
                PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-               IF W305-MILLAR > 1
-                 STRING  W305-RESULT DELIMITED BY "_"
-                   "MILHOES _" DELIMITED BY "_"
-                   W305-EOF  DELIMITED BY "#"
-                 INTO W305-RESULT
-               ELSE
-                 STRING  W305-RESULT DELIMITED BY "_"
-                   "MILHAO _" DELIMITED BY "_"
-                   W305-EOF  DELIMITED BY "#"
-                 INTO W305-RESULT
-               END-IF
+             END-IF
+
+             STRING  W305-RESULT DELIMITED BY "_"
+               "MIL _" DELIMITED BY "_"
+               W305-EOF  DELIMITED BY "#"
+             INTO W305-RESULT
+
+             IF W305-CDU2 > 0 AND W305-DU2 = 0
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
              END-IF
            END-IF.
 
+
+       305-4-PART.
            IF ( W305-PART = 4 AND W305-CDU > 0 )
-               PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
+             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
            END-IF.
+
 
 
        305-CONVERT.
@@ -196,7 +212,7 @@
 
            MOVE  0   TO    W305-MILLAR.
 
-           PERFORM 305-SEGMENT
+           PERFORM 305-1-PART THROUGH 305-4-PART
              VARYING W305-PART
              FROM 1 BY 1 UNTIL W305-PART > 4.
 

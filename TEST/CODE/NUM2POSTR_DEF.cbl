@@ -32,3 +32,4 @@
            77 W305-D2    PIC 9.
            77 W305-C2    PIC 9.
            77 W305-CDU2  PIC  999999 VALUE 0.
+           77 W305-DU2   PIC  999999 VALUE 0.
