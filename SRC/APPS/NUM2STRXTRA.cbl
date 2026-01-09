@@ -20,10 +20,12 @@
        01  TEXTO-ES    PIC x(2000).
        01  TEXTO-DE    PIC x(2000).
        01  TEXTO-FR    PIC x(2000).
+       01  TEXTO-PO    PIC x(2000).
        01  VERSION-EN  PIC X(20).
        01  VERSION-ES  PIC X(20).
        01  VERSION-DE  PIC X(20).
        01  VERSION-FR  PIC X(20).
+       01  VERSION-PO  PIC X(20).
        01  VERSION-APP PIC X(20) VALUE "NUM2STRXTRA (1.0)".
 
        SCREEN SECTION.
@@ -47,9 +49,10 @@
            CALL "ES-VERSION"   USING VERSION-ES.
            CALL "DE-VERSION"   USING VERSION-DE.
            CALL "FR-VERSION"   USING VERSION-FR.
+           CALL "PO-VERSION"   USING VERSION-PO.
 
        000-TEST.
-           MOVE "1"          TO  NUMERO-INP.
+           MOVE "123456123456"          TO  NUMERO-INP.
            MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
            PERFORM 000-TEST-LOOP
@@ -62,6 +65,7 @@
            CALL "ES-CONVERT"   USING NUMERO-INP TEXTO-ES.
            CALL "DE-CONVERT"   USING NUMERO-INP TEXTO-DE.
            CALL "FR-CONVERT"   USING NUMERO-INP TEXTO-FR.
+           CALL "PO-CONVERT"   USING NUMERO-INP TEXTO-PO.
 
            MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
