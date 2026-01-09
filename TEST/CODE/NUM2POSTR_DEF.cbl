@@ -33,3 +33,11 @@
            77 W305-C2    PIC 9.
            77 W305-CDU2  PIC  999999 VALUE 0.
            77 W305-DU2   PIC  999999 VALUE 0.
+
+           01  W305-TABLE OCCURS 10 TIMES.
+             05 W305-TAB OCCURS 7 TIMES PIC  9(12).
+           01  W305-AUX  PIC 9(12).
+
+           01 W305VAL OCCURS 6 TIMES PIC  9(12).
+           01 W305K   PIC  9(12).
+

@@ -52,7 +52,7 @@
            CALL "PO-VERSION"   USING VERSION-PO.
 
        000-TEST.
-           MOVE "1"          TO  NUMERO-INP.
+           MOVE "123456123456"          TO  NUMERO-INP.
            MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
            PERFORM 000-TEST-LOOP

@@ -43,7 +43,10 @@
            MOVE "OITOCENTOS _"     TO  W305-CENTENAS(8).
            MOVE "NOVOCENTOS _"     TO  W305-CENTENAS(9).
 
-
+           MOVE 1000000000 TO W305VAL(1).
+           MOVE 1000000    TO W305VAL(2).
+           MOVE 1000       TO W305VAL(3).
+           MOVE 1       TO W305VAL(4).
 
        305-CDU-CALC.
 
@@ -159,6 +162,12 @@
                  W305-EOF  DELIMITED BY "#"
                INTO W305-RESULT
              END-IF
+             IF W305-TAB(1,6) > 0
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
+             END-IF
            END-IF.
 
 
@@ -173,6 +182,12 @@
              ELSE
                STRING  W305-RESULT DELIMITED BY "_"
                  "MILHAO _" DELIMITED BY "_"
+                 W305-EOF  DELIMITED BY "#"
+               INTO W305-RESULT
+             END-IF
+             IF W305-TAB(2,6) > 0
+               STRING  W305-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
                  W305-EOF  DELIMITED BY "#"
                INTO W305-RESULT
              END-IF
@@ -205,8 +220,52 @@
            END-IF.
 
 
+       305-CALCULATE.
+           PERFORM VARYING W305-PART FROM 1 BY 1 UNTIL W305-PART > 4
+             COMPUTE W305-IDX = 3 * (W305-PART - 1) + 1
 
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-C
+             ADD 1 TO W305-IDX
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-D
+             ADD 1 TO W305-IDX
+             MOVE FUNCTION NUMVAL(W305-CHARS(W305-IDX)) TO W305-U
+
+             MOVE W305-C  TO W305-TAB(W305-PART,1)
+             MOVE W305-D  TO W305-TAB(W305-PART,2)
+             MOVE W305-U  TO W305-TAB(W305-PART,3)
+
+             COMPUTE  W305-TAB(W305-PART,4)
+                 =  W305-C * 100 + W305-D * 10 + W305-U
+
+             COMPUTE W305-TAB(W305-PART,5)
+                 = W305-D * 10 + W305-U
+
+             MOVE 0 TO W305-TAB(W305-PART,6)
+             MOVE 0 TO W305-TAB(W305-PART,7)
+           END-PERFORM.
+
+           PERFORM VARYING W305-PART FROM 1 BY 1 UNTIL W305-PART > 3
+             MOVE 0 TO W305-AUX
+             COMPUTE W305-IDX2 = W305-PART + 1
+             PERFORM VARYING W305-IDX
+               FROM W305-IDX2  BY 1 UNTIL W305-IDX > 4
+
+               COMPUTE W305K=W305VAL(W305-IDX)*W305-TAB(W305-IDX,4)
+               ADD W305K TO W305-AUX
+             END-PERFORM
+             MOVE W305-AUX TO W305-TAB(W305-PART,6)
+           END-PERFORM.
+
+           DISPLAY W305-TABLE(1).
+           DISPLAY W305-TABLE(2).
+           DISPLAY W305-TABLE(3).
+           DISPLAY W305-TABLE(4).
+
+
+      *    FUNCION DE ENTRADA PRINCIPAL
        305-CONVERT.
+
+           PERFORM 305-CALCULATE.
 
            MOVE "_" TO W305-RESULT.
 
@@ -218,6 +277,6 @@
 
 
             STRING  W305-RESULT DELIMITED BY "_"
-             " " DELIMiTED BY SIZE
+             " " DELIMITED BY SIZE
              INTO W305-RESULT.
 
