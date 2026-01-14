@@ -8,6 +8,7 @@
       *        - ALEMAN
       *        - FRANCES
       *        - PORTUGUES
+      *        - NORUEGO
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
@@ -24,6 +25,7 @@
            INCLUDE NUM2DESTR_DEF.
            INCLUDE NUM2FRSTR_DEF.
            INCLUDE NUM2POSTR_DEF.
+           INCLUDE NUM2NOSTR_DEF.
 
 
       *    *****************************************
@@ -48,6 +50,7 @@
            PERFORM   303-INIT.
            PERFORM   304-INIT.
            PERFORM   305-INIT.
+           PERFORM   306-INIT.
            GOBACK.
 
 
@@ -145,6 +148,27 @@
            MOVE W305-RESULT TO  TEXTO.
            GOBACK.
 
+
+
+      *    *****************************************
+      *    NO-VERSION
+      *      CALL "NO-VERSION"   USING VERSION-PO.
+      *    *****************************************
+       ENTRY "NO-VERSION" USING VERSION.
+           MOVE W306-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    NO-CONVERT
+      *    *****************************************
+       ENTRY "NO-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W306-NUMERO.
+           PERFORM 306-CONVERT.
+           MOVE W306-RESULT TO  TEXTO.
+           GOBACK.
+
+
+
       *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
@@ -154,6 +178,7 @@
        INCLUDE NUM2DESTR_CODE.
        INCLUDE NUM2FRSTR_CODE.
        INCLUDE NUM2POSTR_CODE.
+       INCLUDE NUM2NOSTR_CODE.
 
        END PROGRAM LIBNUM2STR.
 
