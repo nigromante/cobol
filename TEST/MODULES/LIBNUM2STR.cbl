@@ -20,6 +20,7 @@
       *    INCLUSION DE DECLARACION DE VARIABLES
       *    USADAS EN FUNCIONES EXTERNAS
       *    *****************************************
+           INCLUDE NUM200STR_DEF.
            INCLUDE NUM2ENSTR_DEF.
            INCLUDE NUM2ESSTR_DEF.
            INCLUDE NUM2DESTR_DEF.
@@ -45,6 +46,7 @@
       *      CALL LIBNUM2STR.
       *    *****************************************
        PROCEDURE DIVISION.
+           PERFORM   300-INIT.
            PERFORM   301-INIT.
            PERFORM   302-INIT.
            PERFORM   303-INIT.
@@ -173,6 +175,7 @@
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
       *    *****************************************
+       INCLUDE NUM200STR_CODE.
        INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2ESSTR_CODE.
        INCLUDE NUM2DESTR_CODE.
