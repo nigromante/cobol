@@ -8,7 +8,7 @@
 
            PERFORM 300-CALCULATE.
 
-           PERFORM 305-1-PART THROUGH 305-4-PART
+           PERFORM 305-CDU-CALC THROUGH 305-SEGMENT
              VARYING W300-PART
              FROM 1 BY 1 UNTIL W300-PART > 4.
 
@@ -16,6 +16,7 @@
             STRING  W300-RESULT DELIMITED BY "_"
              " " DELIMITED BY SIZE
              INTO W300-RESULT.
+
 
 
        305-INIT.
@@ -60,6 +61,8 @@
            MOVE "OITOCENTOS _"     TO  W305-CENTENAS(8).
            MOVE "NOVOCENTOS _"     TO  W305-CENTENAS(9).
 
+
+
        305-CDU-CALC.
 
            MOVE W300-TAB(W300-PART,1) TO W305-C.
@@ -68,7 +71,6 @@
            MOVE W300-TAB(W300-PART,4) TO w305-CDU.
            MOVE W300-TAB(W300-PART,5) TO w305-DU.
 
-       305-CDU-CALC-2.
 
            IF W300-PART = 1 OR W300-PART = 3
              COMPUTE W300-PART2 = W300-PART  + 1
@@ -81,8 +83,75 @@
 
 
 
+       305-SEGMENT.
 
-       305-CDU-PARSE-C.
+           IF ( W300-PART = 1 AND W305-CDU > 0 )
+             PERFORM 305-CDU-PARSE
+             IF W305-CDU > 1
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "BILHOES _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             ELSE
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "BILHAO _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+             IF W300-TAB(1,6) > 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF (W300-PART = 2 AND W305-CDU > 0 )
+             PERFORM 305-CDU-PARSE
+             IF W305-CDU > 1
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "MILHOES _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             ELSE
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "MILHAO _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+             IF W300-TAB(2,6) > 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF ( W300-PART = 3 AND W305-CDU >0 )
+             IF (W305-CDU > 1)
+               PERFORM 305-CDU-PARSE
+             END-IF
+
+             STRING  W300-RESULT DELIMITED BY "_"
+               "MIL _" DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+             INTO W300-RESULT
+
+             IF W305-CDU2 > 0 AND W305-DU2 = 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "E _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF ( W300-PART = 4 AND W305-CDU > 0 )
+             PERFORM 305-CDU-PARSE
+           END-IF.
+
+
+
+       305-CDU-PARSE.
 
            IF W305-C > 0
              IF W305-C = 1
@@ -113,8 +182,6 @@
            END-IF.
 
 
-       305-CDU-PARSE-D.
-
            IF W305-D > 0
              IF W305-D = 1 AND W305-U <> 0
                  STRING  W300-RESULT DELIMITED BY "_"
@@ -137,90 +204,10 @@
            END-IF.
 
 
-       305-CDU-PARSE-U.
-
            IF W305-U > 0
              STRING  W300-RESULT DELIMITED BY "_"
                W305-UNIDADES(W305-U) DELIMITED BY "_"
                W300-EOF  DELIMITED BY "#"
                INTO W300-RESULT
            END-IF.
-
-
-
-       305-1-PART.
-           PERFORM 305-CDU-CALC THROUGH 305-CDU-CALC-2.
-
-           IF ( W300-PART = 1 AND W305-CDU > 0 )
-             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-             IF W305-CDU > 1
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "BILHOES _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             ELSE
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "BILHAO _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-             IF W300-TAB(1,6) > 0
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "E _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-           END-IF.
-
-
-       305-2-PART.
-           IF (W300-PART = 2 AND W305-CDU > 0 )
-             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-             IF W305-CDU > 1
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "MILHOES _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             ELSE
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "MILHAO _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-             IF W300-TAB(2,6) > 0
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "E _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-           END-IF.
-
-
-       305-3-PART.
-           IF ( W300-PART = 3 AND W305-CDU >0 )
-             IF (W305-CDU > 1)
-               PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-             END-IF
-
-             STRING  W300-RESULT DELIMITED BY "_"
-               "MIL _" DELIMITED BY "_"
-               W300-EOF  DELIMITED BY "#"
-             INTO W300-RESULT
-
-             IF W305-CDU2 > 0 AND W305-DU2 = 0
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "E _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-           END-IF.
-
-
-       305-4-PART.
-           IF ( W300-PART = 4 AND W305-CDU > 0 )
-             PERFORM 305-CDU-PARSE-C THROUGH 305-CDU-PARSE-U
-           END-IF.
-
-
-
 

@@ -52,6 +52,56 @@
 
 
 
+       306-CDU-CALC.
+           MOVE W300-TAB(W300-PART,1) TO W300-C.
+           MOVE W300-TAB(W300-PART,2) TO W300-D.
+           MOVE W300-TAB(W300-PART,3) TO W300-U.
+           MOVE W300-TAB(W300-PART,4) TO w300-CDU.
+           MOVE W300-TAB(W300-PART,5) TO w300-DU.
+
+
+
+       306-SEGMENT.
+
+           IF (W300-PART = 1 AND w300-CDU > 0)
+             PERFORM 306-CDU-PARSE
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "MILLIARD _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+           END-IF.
+
+           IF (W300-PART = 2 AND w300-CDU >0)
+               PERFORM 306-CDU-PARSE
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "MILLION _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+           END-IF.
+
+           IF (W300-PART = 3 AND w300-CDU > 0)
+             IF w300-CDU > 1
+               PERFORM 306-CDU-PARSE
+             END-IF
+             STRING  W300-RESULT DELIMITED BY "_"
+               "TUSEN _" DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+             INTO W300-RESULT
+
+             IF W300-TAB(3,6) > 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 "OG _" DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF (W300-PART = 4 AND w300-CDU > 0)
+             PERFORM 306-CDU-PARSE
+           END-IF.
+
+
+
        306-CDU-PARSE.
 
            IF W300-C > 0
@@ -103,56 +153,6 @@
                  W306-UNIDADES(W300-U) DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
                  INTO W300-RESULT
-           END-IF.
-
-
-
-       306-CDU-CALC.
-           MOVE W300-TAB(W300-PART,1) TO W300-C.
-           MOVE W300-TAB(W300-PART,2) TO W300-D.
-           MOVE W300-TAB(W300-PART,3) TO W300-U.
-           MOVE W300-TAB(W300-PART,4) TO w300-CDU.
-           MOVE W300-TAB(W300-PART,5) TO w300-DU.
-
-
-
-       306-SEGMENT.
-
-           IF (W300-PART = 1 AND w300-CDU > 0)
-             PERFORM 306-CDU-PARSE
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "MILLIARD _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-                 INTO W300-RESULT
-           END-IF.
-
-           IF (W300-PART = 2 AND w300-CDU >0)
-               PERFORM 306-CDU-PARSE
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "MILLION _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-                 INTO W300-RESULT
-           END-IF.
-
-           IF (W300-PART = 3 AND w300-CDU > 0)
-             IF w300-CDU > 1
-               PERFORM 306-CDU-PARSE
-             END-IF
-             STRING  W300-RESULT DELIMITED BY "_"
-               "TUSEN _" DELIMITED BY "_"
-               W300-EOF  DELIMITED BY "#"
-             INTO W300-RESULT
-
-             IF W300-TAB(3,6) > 0
-               STRING  W300-RESULT DELIMITED BY "_"
-                 "OG _" DELIMITED BY "_"
-                 W300-EOF  DELIMITED BY "#"
-               INTO W300-RESULT
-             END-IF
-           END-IF.
-
-           IF (W300-PART = 4 AND w300-CDU > 0)
-             PERFORM 306-CDU-PARSE
            END-IF.
 
 
