@@ -54,8 +54,10 @@
              MOVE W300-AUX TO W300-TAB(W300-PART,6)
            END-PERFORM.
 
+           COMPUTE  W300-TAB(1,7) = W300-TAB(1,4).
+           COMPUTE  W300-TAB(2,7) = W300-TAB(1,4)*1000+W300-TAB(2,4).
 
-       300-DISPLAY.
+      * 300-DISPLAY.
            DISPLAY W300-TABLE(1).
            DISPLAY W300-TABLE(2).
            DISPLAY W300-TABLE(3).

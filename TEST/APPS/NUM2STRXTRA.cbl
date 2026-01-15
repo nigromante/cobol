@@ -55,7 +55,7 @@
            CALL "NO-VERSION"   USING VERSION-NO.
 
        000-TEST.
-           MOVE "123456123456"          TO  NUMERO-INP.
+           MOVE "123456789012"          TO  NUMERO-INP.
            MOVE  NUMERO-INP  TO  NUMERO-CUR.
 
            PERFORM 000-TEST-LOOP
