@@ -51,8 +51,6 @@
            PERFORM   302-INIT.
            PERFORM   303-INIT.
            PERFORM   304-INIT.
-           PERFORM   305-INIT.
-           PERFORM   306-INIT.
            GOBACK.
 
 

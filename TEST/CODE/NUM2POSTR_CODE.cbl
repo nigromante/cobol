@@ -1,4 +1,23 @@
 
+      *    FUNCION DE ENTRADA PRINCIPAL
+       305-CONVERT.
+
+           MOVE "_" TO W300-RESULT.
+
+           PERFORM 305-INIT.
+
+           PERFORM 300-CALCULATE.
+
+           PERFORM 305-1-PART THROUGH 305-4-PART
+             VARYING W300-PART
+             FROM 1 BY 1 UNTIL W300-PART > 4.
+
+
+            STRING  W300-RESULT DELIMITED BY "_"
+             " " DELIMITED BY SIZE
+             INTO W300-RESULT.
+
+
        305-INIT.
 
            MOVE "UM _"             TO  W305-UNIDADES(1).
@@ -204,20 +223,4 @@
 
 
 
-
-      *    FUNCION DE ENTRADA PRINCIPAL
-       305-CONVERT.
-
-           PERFORM 300-CALCULATE.
-
-           MOVE "_" TO W300-RESULT.
-
-           PERFORM 305-1-PART THROUGH 305-4-PART
-             VARYING W300-PART
-             FROM 1 BY 1 UNTIL W300-PART > 4.
-
-
-            STRING  W300-RESULT DELIMITED BY "_"
-             " " DELIMITED BY SIZE
-             INTO W300-RESULT.
 
