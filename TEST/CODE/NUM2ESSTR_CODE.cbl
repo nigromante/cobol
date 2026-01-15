@@ -1,7 +1,26 @@
 
-       301-INIT.
+       301-CONVERT.
 
-           MOVE  "_#"              TO  W301-EOF.
+           MOVE "_" TO W300-RESULT.
+
+           MOVE  0   TO    W301-MILLAR.
+
+           PERFORM 301-INIT.
+
+           PERFORM 300-CALCULATE.
+
+           PERFORM 301-CDU-CALC THROUGH 301-SEGMENT
+             VARYING W300-PART
+             FROM 1 BY 1 UNTIL W300-PART > 4.
+
+
+            STRING  W300-RESULT DELIMITED BY "_"
+             " " DELIMiTED BY SIZE
+             INTO W300-RESULT.
+
+
+
+       301-INIT.
 
            MOVE "UN _"             TO  W301-UNIDADES(1).
            MOVE "DOS _"            TO  W301-UNIDADES(2).
@@ -45,79 +64,23 @@
 
 
 
-       301-CDU-PARSE.
-
-           IF W301-C > 0
-             IF W301-C = 1
-               IF W301-D= 0 AND W301-U = 0
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   "CIEN _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-               ELSE
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   "CIENTO _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-               END-IF
-             ELSE
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   W301-CENTENAS(W301-C) DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-             END-IF
-           END-IF.
-
-           IF W301-D > 0
-             IF W301-D = 1 AND W301-U <> 0
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   W301-DECENAS-1(W301-U) DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-               MOVE 0 TO W301-U
-             ELSE
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   W301-DECENAS(W301-D) DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-               IF W301-U > 0
-                 STRING  W301-RESULT DELIMITED BY "_"
-                   "Y _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
-               END-IF
-             END-IF
-           END-IF.
-
-           IF W301-U > 0
-             STRING  W301-RESULT DELIMITED BY "_"
-               W301-UNIDADES(W301-U) DELIMITED BY "_"
-               W301-EOF  DELIMITED BY "#"
-               INTO W301-RESULT
-           END-IF.
-
-
-
        301-CDU-CALC.
 
-           COMPUTE W301-IDX = 3 * (W301-PART - 1) + 1.
+           MOVE W300-TAB(W300-PART,1) TO W301-C.
+           MOVE W300-TAB(W300-PART,2) TO W301-D.
+           MOVE W300-TAB(W300-PART,3) TO W301-U.
+           MOVE W300-TAB(W300-PART,4) TO w301-CDU.
+           MOVE W300-TAB(W300-PART,5) TO w301-DU.
 
-           MOVE FUNCTION NUMVAL(W301-CHARS(W301-IDX)) TO W301-C.
-           ADD 1 TO W301-IDX.
-           MOVE FUNCTION NUMVAL(W301-CHARS(W301-IDX)) TO W301-D.
-           ADD 1 TO W301-IDX.
-           MOVE FUNCTION NUMVAL(W301-CHARS(W301-IDX)) TO W301-U.
-
-           COMPUTE W301-CDU = W301-C * 100 + W301-D * 10 + W301-U.
 
 
        301-SEGMENT.
 
            PERFORM 301-CDU-CALC.
 
-           IF (W301-PART = 1 OR W301-PART = 3)
+           IF (W300-PART = 1 OR W300-PART = 3)
 
-             IF (W301-PART = 1)
+             IF (W300-PART = 1)
                COMPUTE W301-MILLAR = W301-CDU * 1000
              END-IF
 
@@ -125,48 +88,87 @@
                IF (W301-CDU > 1)
                  PERFORM 301-CDU-PARSE
                END-IF
-                 STRING  W301-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "MIL _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
              END-IF
            END-IF.
 
-           IF (W301-PART = 2)
+           IF (W300-PART = 2)
              COMPUTE W301-MILLAR = W301-CDU + W301-MILLAR
              IF W301-MILLAR > 0
                PERFORM 301-CDU-PARSE
                IF W301-MILLAR > 1
-                 STRING  W301-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "MILLONES _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
                ELSE
-                 STRING  W301-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "MILLON _" DELIMITED BY "_"
-                   W301-EOF  DELIMITED BY "#"
-                 INTO W301-RESULT
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
                END-IF
              END-IF
            END-IF.
 
-           IF ( W301-PART = 4 AND W301-CDU > 0 )
+           IF ( W300-PART = 4 AND W301-CDU > 0 )
                PERFORM 301-CDU-PARSE
            END-IF.
 
 
-       301-CONVERT.
 
-           MOVE "_" TO W301-RESULT.
+       301-CDU-PARSE.
 
-           MOVE  0   TO    W301-MILLAR.
+           IF W301-C > 0
+             IF W301-C = 1
+               IF W301-DU = 0
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   "CIEN _" DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               ELSE
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   "CIENTO _" DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               END-IF
+             ELSE
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   W301-CENTENAS(W301-C) DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+             END-IF
+           END-IF.
 
-           PERFORM 301-SEGMENT
-             VARYING W301-PART
-             FROM 1 BY 1 UNTIL W301-PART > 4.
+           IF W301-D > 0
+             IF W301-D = 1 AND W301-U <> 0
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   W301-DECENAS-1(W301-U) DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               MOVE 0 TO W301-U
+             ELSE
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   W301-DECENAS(W301-D) DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               IF W301-U > 0
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   "Y _" DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               END-IF
+             END-IF
+           END-IF.
+
+           IF W301-U > 0
+             STRING  W300-RESULT DELIMITED BY "_"
+               W301-UNIDADES(W301-U) DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+           END-IF.
 
 
-            STRING  W301-RESULT DELIMITED BY "_"
-             " " DELIMiTED BY SIZE
-             INTO W301-RESULT.
 

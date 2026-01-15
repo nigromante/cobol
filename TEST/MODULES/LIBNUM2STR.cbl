@@ -47,10 +47,6 @@
       *    *****************************************
        PROCEDURE DIVISION.
            PERFORM   300-INIT.
-           PERFORM   301-INIT.
-           PERFORM   302-INIT.
-           PERFORM   303-INIT.
-           PERFORM   304-INIT.
            GOBACK.
 
 
@@ -67,9 +63,9 @@
       *    ES-CONVER
       *    *****************************************
        ENTRY "ES-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W301-NUMERO.
+           MOVE NUMERO   TO W300-NUMERO.
            PERFORM 301-CONVERT.
-           MOVE W301-RESULT TO  TEXTO.
+           MOVE W300-RESULT TO  TEXTO.
            GOBACK.
 
 
