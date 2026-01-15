@@ -21,8 +21,8 @@
       *    USADAS EN FUNCIONES EXTERNAS
       *    *****************************************
            INCLUDE NUM200STR_DEF.
-           INCLUDE NUM2ENSTR_DEF.
            INCLUDE NUM2ESSTR_DEF.
+           INCLUDE NUM2ENSTR_DEF.
            INCLUDE NUM2DESTR_DEF.
            INCLUDE NUM2FRSTR_DEF.
            INCLUDE NUM2POSTR_DEF.
@@ -176,8 +176,8 @@
       *    FUNCIONES EXTERNAS
       *    *****************************************
        INCLUDE NUM200STR_CODE.
-       INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2ESSTR_CODE.
+       INCLUDE NUM2ENSTR_CODE.
        INCLUDE NUM2DESTR_CODE.
        INCLUDE NUM2FRSTR_CODE.
        INCLUDE NUM2POSTR_CODE.

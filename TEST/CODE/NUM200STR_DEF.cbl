@@ -1,15 +1,19 @@
 
-           77  W300-VERSION  PIC X(20) VALUE 'NUM200STR (1.0)'.
+           77 W300-VERSION  PIC X(20) VALUE 'NUM200STR (1.0)'.
 
-      *    Input/Output
+           77 W300-EOF     PIC   XX.
+
+      *    Input
            77 W300-NUMERO    PIC X(12).
            77 W300-CHARS REDEFINES W300-NUMERO OCCURS 12 TIMES PIC X.
 
 
       *    Centenas/Decenas/Unidades
-           77 W300-U  PIC 9.
-           77 W300-D  PIC 9.
-           77 W300-C  PIC 9.
+           77 W300-CDU   PIC 999999 VALUE 0.
+           77 W300-DU    PIC 999999 VALUE 0.
+           77 W300-U     PIC 9.
+           77 W300-D     PIC 9.
+           77 W300-C     PIC 9.
 
            77 W300-PART    PIC  9.
 

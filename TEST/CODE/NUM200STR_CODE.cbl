@@ -1,9 +1,13 @@
 
        300-INIT.
-           MOVE 1000000000 TO W300VAL(1).
-           MOVE 1000000    TO W300VAL(2).
-           MOVE 1000       TO W300VAL(3).
-           MOVE 1          TO W300VAL(4).
+
+           MOVE  "_#"        TO  W300-EOF.
+
+           MOVE 1000000000   TO W300VAL(1).
+           MOVE 1000000      TO W300VAL(2).
+           MOVE 1000         TO W300VAL(3).
+           MOVE 1            TO W300VAL(4).
+
 
 
       *    C D U CDU DU  P+1 0
@@ -49,4 +53,11 @@
              END-PERFORM
              MOVE W300-AUX TO W300-TAB(W300-PART,6)
            END-PERFORM.
+
+
+       300-DISPLAY.
+           DISPLAY W300-TABLE(1).
+           DISPLAY W300-TABLE(2).
+           DISPLAY W300-TABLE(3).
+           DISPLAY W300-TABLE(4).
 
