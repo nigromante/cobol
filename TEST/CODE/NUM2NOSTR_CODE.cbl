@@ -37,53 +37,53 @@
 
            IF W300-C > 0
              IF W300-C > 1
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  W306-UNIDADES(W300-C) DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-               INTO W306-RESULT
+               INTO W300-RESULT
              END-IF
 
-             STRING  W306-RESULT DELIMITED BY "_"
+             STRING  W300-RESULT DELIMITED BY "_"
                "HUNDRE _" DELIMITED BY "_"
                W300-EOF  DELIMITED BY "#"
-               INTO W306-RESULT
+               INTO W300-RESULT
 
                IF W300-D > 0 OR W300-U > 0
-                 STRING  W306-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "OG _" DELIMITED BY "_"
                    W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
 
                END-IF
            END-IF.
 
            IF W300-D > 0
              IF W300-D = 1 AND W300-U <> 0
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  W306-DECENAS-1(W300-U) DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
                MOVE 0 TO W300-U
              ELSE
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  W306-DECENAS(W300-D) DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
 
                  IF W300-U = 0
-                   STRING  W306-RESULT DELIMITED BY "_"
+                   STRING  W300-RESULT DELIMITED BY "_"
                      " _" DELIMITED BY "_"
                      W300-EOF  DELIMITED BY "#"
-                   INTO W306-RESULT
+                   INTO W300-RESULT
                  END-IF
              END-IF
            END-IF.
 
            IF W300-U > 0
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  W306-UNIDADES(W300-U) DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
            END-IF.
 
 
@@ -101,34 +101,34 @@
 
            IF (W300-PART = 1 AND w300-CDU > 0)
              PERFORM 306-CDU-PARSE
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "MILLIARD _" DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
            END-IF.
 
            IF (W300-PART = 2 AND w300-CDU >0)
                PERFORM 306-CDU-PARSE
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "MILLION _" DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-                 INTO W306-RESULT
+                 INTO W300-RESULT
            END-IF.
 
            IF (W300-PART = 3 AND w300-CDU > 0)
              IF w300-CDU > 1
                PERFORM 306-CDU-PARSE
              END-IF
-             STRING  W306-RESULT DELIMITED BY "_"
+             STRING  W300-RESULT DELIMITED BY "_"
                "TUSEN _" DELIMITED BY "_"
                W300-EOF  DELIMITED BY "#"
-             INTO W306-RESULT
+             INTO W300-RESULT
 
              IF W300-TAB(3,6) > 0
-               STRING  W306-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "OG _" DELIMITED BY "_"
                  W300-EOF  DELIMITED BY "#"
-               INTO W306-RESULT
+               INTO W300-RESULT
              END-IF
            END-IF.
 
@@ -140,18 +140,16 @@
 
        306-CONVERT.
 
-           MOVE "_" TO W306-RESULT.
+           MOVE "_" TO W300-RESULT.
 
-           MOVE W306-NUMERO   TO W300-NUMERO.
            PERFORM 300-CALCULATE.
-
 
            PERFORM 306-CDU-CALC THROUGH 306-SEGMENT
              VARYING W300-PART
              FROM 1 BY 1 UNTIL W300-PART > 4.
 
 
-            STRING  W306-RESULT DELIMITED BY "_"
+            STRING  W300-RESULT DELIMITED BY "_"
              " " DELIMiTED BY SIZE
-             INTO W306-RESULT.
+             INTO W300-RESULT.
 

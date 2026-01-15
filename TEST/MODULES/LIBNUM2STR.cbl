@@ -145,9 +145,9 @@
       *    PO-CONVERT
       *    *****************************************
        ENTRY "PO-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W305-NUMERO.
+           MOVE NUMERO   TO W300-NUMERO.
            PERFORM 305-CONVERT.
-           MOVE W305-RESULT TO  TEXTO.
+           MOVE W300-RESULT TO  TEXTO.
            GOBACK.
 
 
@@ -164,9 +164,9 @@
       *    NO-CONVERT
       *    *****************************************
        ENTRY "NO-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W306-NUMERO.
+           MOVE NUMERO   TO W300-NUMERO.
            PERFORM 306-CONVERT.
-           MOVE W306-RESULT TO  TEXTO.
+           MOVE W300-RESULT TO  TEXTO.
            GOBACK.
 
 

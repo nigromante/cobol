@@ -7,6 +7,8 @@
            77 W300-NUMERO    PIC X(12).
            77 W300-CHARS REDEFINES W300-NUMERO OCCURS 12 TIMES PIC X.
 
+      *    Output
+           77 W300-RESULT    PIC X(2000).
 
       *    Centenas/Decenas/Unidades
            77 W300-CDU   PIC 999999 VALUE 0.
@@ -16,6 +18,7 @@
            77 W300-C     PIC 9.
 
            77 W300-PART    PIC  9.
+           77 W300-PART2   PIC  9.
 
            77 W300-IDX     PIC  999.
            77 W300-IDX2  PIC  999.
