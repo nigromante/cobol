@@ -105,9 +105,9 @@
       *    DE-CONVERT
       *    *****************************************
        ENTRY "DE-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W303-NUMERO.
+           MOVE NUMERO   TO W300-NUMERO.
            PERFORM 303-CONVERT.
-           MOVE W303-RESULT TO  TEXTO.
+           MOVE W300-RESULT TO  TEXTO.
            GOBACK.
 
 
