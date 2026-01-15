@@ -86,9 +86,9 @@
       *    EN-CONVERT
       *    *****************************************
        ENTRY "EN-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W302-NUMERO.
+           MOVE NUMERO   TO W300-NUMERO.
            PERFORM 302-CONVERT.
-           MOVE W302-RESULT TO  TEXTO.
+           MOVE W300-RESULT TO  TEXTO.
            GOBACK.
 
 

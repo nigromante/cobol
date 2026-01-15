@@ -1,7 +1,26 @@
 
-       302-INIT.
+       302-CONVERT.
 
-           MOVE  "_#"            TO  W302-EOF.
+           MOVE "_" TO W300-RESULT.
+
+           PERFORM 302-INIT.
+
+           PERFORM 300-CALCULATE.
+
+           MOVE  0   TO    W302-MILLAR.
+
+           PERFORM 302-CDU-CALC THROUGH 302-SEGMENT
+             VARYING W300-PART
+             FROM 1 BY 1 UNTIL W300-PART > 4.
+
+
+            STRING  W300-RESULT DELIMITED BY "_"
+             " " DELIMITED BY SIZE
+             INTO W300-RESULT.
+
+
+
+       302-INIT.
 
            MOVE "ONE _"          TO  W302-UNIDADES(1).
            MOVE "TWO _"          TO  W302-UNIDADES(2).
@@ -35,55 +54,13 @@
 
 
 
-       302-CDU-PARSE.
-
-           IF W302-C > 0
-             STRING  W302-RESULT DELIMITED BY "_"
-               W302-UNIDADES(W302-C) DELIMITED BY "_"
-               W302-EOF  DELIMITED BY "#"
-               INTO W302-RESULT
-
-             STRING  W302-RESULT DELIMITED BY "_"
-               "HUNDRED _" DELIMITED BY "_"
-               W302-EOF  DELIMITED BY "#"
-               INTO W302-RESULT
-           END-IF.
-
-           IF W302-D > 0
-             IF W302-D = 1 AND W302-U <> 0
-               STRING  W302-RESULT DELIMITED BY "_"
-                 W302-DECENAS-1(W302-U) DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
-               MOVE 0 TO W302-U
-             ELSE
-               STRING  W302-RESULT DELIMITED BY "_"
-                 W302-DECENAS(W302-D) DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
-             END-IF
-           END-IF.
-
-           IF W302-U > 0
-               STRING  W302-RESULT DELIMITED BY "_"
-                 W302-UNIDADES(W302-U) DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
-           END-IF.
-
-
-
        302-CDU-CALC.
 
-           COMPUTE W302-IDX = 3 * (W302-PART - 1) + 1.
-
-           MOVE FUNCTION NUMVAL(W302-CHARS(W302-IDX)) TO W302-C.
-           ADD 1 TO W302-IDX.
-           MOVE FUNCTION NUMVAL(W302-CHARS(W302-IDX)) TO W302-D.
-           ADD 1 TO W302-IDX.
-           MOVE FUNCTION NUMVAL(W302-CHARS(W302-IDX)) TO W302-U.
-
-           COMPUTE W302-CDU = W302-C * 100 + W302-D * 10 + W302-U.
+           MOVE W300-TAB(W300-PART,1) TO W302-C.
+           MOVE W300-TAB(W300-PART,2) TO W302-D.
+           MOVE W300-TAB(W300-PART,3) TO W302-U.
+           MOVE W300-TAB(W300-PART,4) TO W302-CDU.
+           MOVE W300-TAB(W300-PART,5) TO W302-DU.
 
 
 
@@ -91,51 +68,74 @@
 
            PERFORM 302-CDU-CALC.
 
-           IF (W302-PART = 1 AND W302-CDU > 0)
+           IF (W300-PART = 1 AND W302-CDU > 0)
              PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "BILLION _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
            END-IF.
 
-           IF (W302-PART = 2)
+           IF (W300-PART = 2)
              COMPUTE W302-MILLAR = W302-CDU + W302-MILLAR
              IF W302-MILLAR > 0
                PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "MILLION _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
              END-IF
            END-IF.
 
-           IF (W302-PART = 3 AND W302-CDU > 0)
+           IF (W300-PART = 3 AND W302-CDU > 0)
                PERFORM 302-CDU-PARSE
-               STRING  W302-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  "THOUSAND _" DELIMITED BY "_"
-                 W302-EOF  DELIMITED BY "#"
-                 INTO W302-RESULT
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
            END-IF.
 
-           IF ( W302-PART = 4 AND W302-CDU > 0 )
+           IF ( W300-PART = 4 AND W302-CDU > 0 )
              PERFORM 302-CDU-PARSE
            END-IF.
 
 
 
-       302-CONVERT.
+       302-CDU-PARSE.
 
-           MOVE "_" TO W302-RESULT.
+           IF W302-C > 0
+             STRING  W300-RESULT DELIMITED BY "_"
+               W302-UNIDADES(W302-C) DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
 
-           MOVE  0   TO    W302-MILLAR.
+             STRING  W300-RESULT DELIMITED BY "_"
+               "HUNDRED _" DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+           END-IF.
 
-           PERFORM 302-SEGMENT
-             VARYING W302-PART
-             FROM 1 BY 1 UNTIL W302-PART > 4.
+           IF W302-D > 0
+             IF W302-D = 1 AND W302-U <> 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 W302-DECENAS-1(W302-U) DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               MOVE 0 TO W302-U
+             ELSE
+               STRING  W300-RESULT DELIMITED BY "_"
+                 W302-DECENAS(W302-D) DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF W302-U > 0
+               STRING  W300-RESULT DELIMITED BY "_"
+                 W302-UNIDADES(W302-U) DELIMITED BY "_"
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+           END-IF.
 
 
-            STRING  W302-RESULT DELIMITED BY "_"
-             " " DELIMiTED BY SIZE
-             INTO W302-RESULT.
 
