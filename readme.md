@@ -17,7 +17,7 @@
 
 
 
-## Rutinas de Monto Escrito
+## Rutinas de Monto Escrito en varios idiomas.
 
 <img src="capture.png" align="right"/>
 
