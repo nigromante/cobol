@@ -10,6 +10,7 @@
       *        - PORTUGUES
       *        - NORUEGO
       *        - ROMANO
+      *        - ITALIANO
       *    *****************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LIBNUM2STR.
