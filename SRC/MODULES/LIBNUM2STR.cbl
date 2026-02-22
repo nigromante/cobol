@@ -29,6 +29,7 @@
            INCLUDE NUM2POSTR_DEF.
            INCLUDE NUM2NOSTR_DEF.
            INCLUDE NUM2ROSTR_DEF.
+           INCLUDE NUM2ITSTR_DEF.
 
 
       *    *****************************************
@@ -187,6 +188,24 @@
 
 
       *    *****************************************
+      *    IT-VERSION
+      *      CALL "IT-VERSION"   USING VERSION-IT.
+      *    *****************************************
+       ENTRY "IT-VERSION" USING VERSION.
+           MOVE W308-VERSION TO  VERSION.
+           GOBACK.
+
+      *    *****************************************
+      *    IT-CONVERT
+      *    *****************************************
+       ENTRY "IT-CONVERT" USING NUMERO TEXTO.
+           MOVE NUMERO   TO W300-NUMERO.
+           PERFORM 308-CONVERT.
+           MOVE W300-RESULT TO  TEXTO.
+           GOBACK.
+
+
+      *    *****************************************
       *    INCLUSION DE PROCEDIMIENTOS DE
       *    FUNCIONES EXTERNAS
       *    *****************************************
@@ -198,6 +217,7 @@
        INCLUDE NUM2POSTR_CODE.
        INCLUDE NUM2NOSTR_CODE.
        INCLUDE NUM2ROSTR_CODE.
+       INCLUDE NUM2ITSTR_CODE.
 
        END PROGRAM LIBNUM2STR.
 
