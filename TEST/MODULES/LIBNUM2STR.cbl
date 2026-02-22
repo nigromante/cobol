@@ -41,6 +41,7 @@
            77  NUMERO  PIC X(12).
            77  TEXTO   PIC X(2000).
            77  VERSION PIC X(20).
+           77  COUNTRY PIC X(2).
 
       *    *****************************************
       *    PROCEDIMIENTO LLAMADO AL CARGAR LA
@@ -56,154 +57,71 @@
 
 
       *    *****************************************
-      *    ES-VERSION
-      *      CALL "ES-VERSION"   USING VERSION-EN.
+      *    VERSION
+      *      CALL "VERSION"  USING "ES" VERSION-ES.
       *    *****************************************
-       ENTRY "ES-VERSION" USING VERSION.
-           MOVE W301-VERSION TO  VERSION.
+       ENTRY "VERSION" USING COUNTRY VERSION.
+
+           EVALUATE COUNTRY
+             WHEN "ES"
+               MOVE W301-VERSION TO  VERSION
+             WHEN "EN"
+               MOVE W302-VERSION TO  VERSION
+             WHEN "DE"
+               MOVE W303-VERSION TO  VERSION
+             WHEN "FR"
+               MOVE W304-VERSION TO  VERSION
+             WHEN "PO"
+               MOVE W305-VERSION TO  VERSION
+             WHEN "NO"
+               MOVE W306-VERSION TO  VERSION
+             WHEN "RO"
+               MOVE W307-VERSION TO  VERSION
+             WHEN "IT"
+               MOVE W308-VERSION TO  VERSION
+           END-EVALUATE.
+
            GOBACK.
 
+
+
       *    *****************************************
-      *    ES-CONVER
+      *    CONVERT
+      *    CALL "CONVERT"   USING "ES" NUMERO-INP TEXTO-ES.
       *    *****************************************
-       ENTRY "ES-CONVERT" USING NUMERO TEXTO.
+       ENTRY "CONVERT" USING COUNTRY NUMERO TEXTO.
+
+           MOVE "_" TO W300-RESULT.
+
            MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 301-CONVERT.
+
+           EVALUATE COUNTRY
+             WHEN "ES"
+               PERFORM 301-CONVERT
+             WHEN "EN"
+               PERFORM 302-CONVERT
+             WHEN "DE"
+               PERFORM 303-CONVERT
+             WHEN "FR"
+               PERFORM 304-CONVERT
+             WHEN "PO"
+               PERFORM 305-CONVERT
+             WHEN "NO"
+               PERFORM 306-CONVERT
+             WHEN "RO"
+               PERFORM 307-CONVERT
+             WHEN "IT"
+               PERFORM 308-CONVERT
+           END-EVALUATE.
+
+           STRING  W300-RESULT DELIMITED BY "_"
+             " " DELIMITED BY SIZE
+             INTO W300-RESULT.
+           
            MOVE W300-RESULT TO  TEXTO.
+
            GOBACK.
 
-
-
-      *    *****************************************
-      *    EN-VERSION
-      *      CALL "EN-VERSION"   USING VERSION-EN.
-      *    *****************************************
-       ENTRY "EN-VERSION" USING VERSION.
-           MOVE W302-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    EN-CONVERT
-      *    *****************************************
-       ENTRY "EN-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 302-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    DE-VERSION
-      *      CALL "DE-VERSION"   USING VERSION-DE.
-      *    *****************************************
-       ENTRY "DE-VERSION" USING VERSION.
-           MOVE W303-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    DE-CONVERT
-      *    *****************************************
-       ENTRY "DE-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 303-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    FR-VERSION
-      *      CALL "FR-VERSION"   USING VERSION-FR.
-      *    *****************************************
-       ENTRY "FR-VERSION" USING VERSION.
-           MOVE W304-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    FR-CONVERT
-      *    *****************************************
-       ENTRY "FR-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 304-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    PO-VERSION
-      *      CALL "PO-VERSION"   USING VERSION-PO.
-      *    *****************************************
-       ENTRY "PO-VERSION" USING VERSION.
-           MOVE W305-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    PO-CONVERT
-      *    *****************************************
-       ENTRY "PO-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 305-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    NO-VERSION
-      *      CALL "NO-VERSION"   USING VERSION-NO.
-      *    *****************************************
-       ENTRY "NO-VERSION" USING VERSION.
-           MOVE W306-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    NO-CONVERT
-      *    *****************************************
-       ENTRY "NO-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 306-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    RO-VERSION
-      *      CALL "RO-VERSION"   USING VERSION-RO.
-      *    *****************************************
-       ENTRY "RO-VERSION" USING VERSION.
-           MOVE W307-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    RO-CONVERT
-      *    *****************************************
-       ENTRY "RO-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 307-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
-
-
-
-      *    *****************************************
-      *    IT-VERSION
-      *      CALL "IT-VERSION"   USING VERSION-IT.
-      *    *****************************************
-       ENTRY "IT-VERSION" USING VERSION.
-           MOVE W308-VERSION TO  VERSION.
-           GOBACK.
-
-      *    *****************************************
-      *    IT-CONVERT
-      *    *****************************************
-       ENTRY "IT-CONVERT" USING NUMERO TEXTO.
-           MOVE NUMERO   TO W300-NUMERO.
-           PERFORM 308-CONVERT.
-           MOVE W300-RESULT TO  TEXTO.
-           GOBACK.
 
 
       *    *****************************************
