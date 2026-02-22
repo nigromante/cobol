@@ -1,7 +1,26 @@
 
-       303-INIT.
+       303-CONVERT.
 
-           MOVE  "_#"              TO  W303-EOF.
+           MOVE "_" TO W300-RESULT.
+
+           PERFORM 303-INIT.
+
+           PERFORM 300-CALCULATE.
+
+           MOVE  0   TO    W303-MILLAR.
+
+           PERFORM 303-CDU-CALC THROUGH 303-SEGMENT
+             VARYING W300-PART
+             FROM 1 BY 1 UNTIL W300-PART > 4.
+
+
+            STRING  W300-RESULT DELIMITED BY "_"
+             " " DELIMiTED BY SIZE
+             INTO W300-RESULT.
+
+
+
+       303-INIT.
 
            MOVE "EINS_"           TO  W303-UNIDADES(1).
            MOVE "ZWEI_"           TO  W303-UNIDADES(2).
@@ -45,65 +64,20 @@
 
 
 
-       303-CDU-PARSE.
-
-           IF W303-C > 0
-             STRING  W303-RESULT DELIMITED BY "_"
-               W303-CENTENAS(W303-C) DELIMITED BY "_"
-               W303-EOF  DELIMITED BY "#"
-               INTO W303-RESULT
-           END-IF.
-
-           IF W303-U > 0  AND W303-D <> 1
-             STRING  W303-RESULT DELIMITED BY "_"
-               W303-UNIDADES(W303-U) DELIMITED BY "_"
-               W303-EOF  DELIMITED BY "#"
-               INTO W303-RESULT
-             IF W303-D > 0
-                 STRING  W303-RESULT DELIMITED BY "_"
-                   "UND_" DELIMITED BY "_"
-                   W303-EOF  DELIMITED BY "#"
-                 INTO W303-RESULT
-             END-IF
-           END-IF.
-
-           IF W303-D > 0
-             IF W303-D = 1 AND W303-U <> 0
-                 STRING  W303-RESULT DELIMITED BY "_"
-                   W303-DECENAS-1(W303-U) DELIMITED BY "_"
-                   W303-EOF  DELIMITED BY "#"
-                 INTO W303-RESULT
-               MOVE 0 TO W303-U
-             ELSE
-                 STRING  W303-RESULT DELIMITED BY "_"
-                   W303-DECENAS(W303-D) DELIMITED BY "_"
-                   W303-EOF  DELIMITED BY "#"
-                 INTO W303-RESULT
-             END-IF
-           END-IF.
-
-
-
        303-CDU-CALC.
+           MOVE W300-TAB(W300-PART,1) TO W303-C.
+           MOVE W300-TAB(W300-PART,2) TO W303-D.
+           MOVE W300-TAB(W300-PART,3) TO W303-U.
+           MOVE W300-TAB(W300-PART,4) TO w303-CDU.
+           MOVE W300-TAB(W300-PART,5) TO w303-DU.
 
-           COMPUTE W303-IDX = 3 * (W303-PART - 1) + 1.
-
-           MOVE FUNCTION NUMVAL(W303-CHARS(W303-IDX)) TO W303-C.
-           ADD 1 TO W303-IDX.
-           MOVE FUNCTION NUMVAL(W303-CHARS(W303-IDX)) TO W303-D.
-           ADD 1 TO W303-IDX.
-           MOVE FUNCTION NUMVAL(W303-CHARS(W303-IDX)) TO W303-U.
-
-           COMPUTE W303-CDU = W303-C * 100 + W303-D * 10 + W303-U.
 
 
        303-SEGMENT.
 
-           PERFORM 303-CDU-CALC.
+           IF (W300-PART = 1 OR W300-PART = 3)
 
-           IF (W303-PART = 1 OR W303-PART = 3)
-
-             IF (W303-PART = 1)
+             IF (W300-PART = 1)
                COMPUTE W303-MILLAR = W303-CDU * 1000
              END-IF
 
@@ -111,48 +85,73 @@
                IF (W303-CDU > 1)
                  PERFORM 303-CDU-PARSE
                END-IF
-                 STRING  W303-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "TAUSEND_" DELIMITED BY "_"
-                   W303-EOF  DELIMITED BY "#"
-                 INTO W303-RESULT
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
              END-IF
            END-IF.
 
-           IF (W303-PART = 2)
+           IF (W300-PART = 2)
              COMPUTE W303-MILLAR = W303-CDU + W303-MILLAR
              IF W303-MILLAR > 0
                IF W303-MILLAR = 1
-                 STRING  W303-RESULT DELIMITED BY "_"
+                 STRING  W300-RESULT DELIMITED BY "_"
                    "EINE MILLION _" DELIMITED BY "_"
-                   W303-EOF  DELIMITED BY "#"
-                   INTO W303-RESULT
+                   W300-EOF  DELIMITED BY "#"
+                   INTO W300-RESULT
                ELSE
                PERFORM 303-CDU-PARSE
-               STRING  W303-RESULT DELIMITED BY "_"
+               STRING  W300-RESULT DELIMITED BY "_"
                  " MILLIONEN _" DELIMITED BY "_"
-                 W303-EOF  DELIMITED BY "#"
-                 INTO W303-RESULT
+                 W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
                END-IF
              END-IF
            END-IF.
 
-           IF ( W303-PART = 4 AND W303-CDU > 0 )
+           IF ( W300-PART = 4 AND W303-CDU > 0 )
                PERFORM 303-CDU-PARSE
            END-IF.
 
 
-       303-CONVERT.
 
-           MOVE "_" TO W303-RESULT.
+       303-CDU-PARSE.
 
-           MOVE  0   TO    W303-MILLAR.
+           IF W303-C > 0
+             STRING  W300-RESULT DELIMITED BY "_"
+               W303-CENTENAS(W303-C) DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+           END-IF.
 
-           PERFORM 303-SEGMENT
-             VARYING W303-PART
-             FROM 1 BY 1 UNTIL W303-PART > 4.
+           IF W303-U > 0  AND W303-D <> 1
+             STRING  W300-RESULT DELIMITED BY "_"
+               W303-UNIDADES(W303-U) DELIMITED BY "_"
+               W300-EOF  DELIMITED BY "#"
+               INTO W300-RESULT
+             IF W303-D > 0
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   "UND_" DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+             END-IF
+           END-IF.
+
+           IF W303-D > 0
+             IF W303-D = 1 AND W303-U <> 0
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   W303-DECENAS-1(W303-U) DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+               MOVE 0 TO W303-U
+             ELSE
+                 STRING  W300-RESULT DELIMITED BY "_"
+                   W303-DECENAS(W303-D) DELIMITED BY "_"
+                   W300-EOF  DELIMITED BY "#"
+                 INTO W300-RESULT
+             END-IF
+           END-IF.
 
 
-            STRING  W303-RESULT DELIMITED BY "_"
-             " " DELIMiTED BY SIZE
-             INTO W303-RESULT.
 

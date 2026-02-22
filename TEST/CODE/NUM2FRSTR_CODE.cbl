@@ -3,7 +3,7 @@
 
            MOVE "_" TO W300-RESULT.
 
-           PERFORM 305-INIT.
+           PERFORM 304-INIT.
 
            PERFORM 300-CALCULATE.
 
@@ -13,7 +13,7 @@
 
 
             STRING  W300-RESULT DELIMITED BY "_"
-             " " DELIMiTED BY SIZE
+             " " DELIMITED BY SIZE
              INTO W300-RESULT.
 
 
