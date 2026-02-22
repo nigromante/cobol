@@ -1,8 +1,6 @@
 
        304-CONVERT.
 
-           MOVE "_" TO W300-RESULT.
-
            PERFORM 304-INIT.
 
            PERFORM 300-CALCULATE.
@@ -10,11 +8,6 @@
            PERFORM 304-CDU-CALC THROUGH 304-SEGMENT
              VARYING W300-PART
              FROM 1 BY 1 UNTIL W300-PART > 4.
-
-
-            STRING  W300-RESULT DELIMITED BY "_"
-             " " DELIMITED BY SIZE
-             INTO W300-RESULT.
 
 
 
