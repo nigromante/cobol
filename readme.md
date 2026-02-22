@@ -16,8 +16,17 @@
 |  ./SCRIPTS/TEST/run.sh {APP}        | Execute {APP}           |
 
 
+<hr>
 
 ## Rutinas de Monto Escrito en varios idiomas.
+
+./SCRIPTS/RELEASE/lib.sh
+
+./SCRIPTS/RELEASE/compile.sh NUM2STRXTRA
+
+./SCRIPTS/RELEASE/run.sh NUM2STRXTRA
+
+
 
 <img src="capture.png" align="right"/>
 
