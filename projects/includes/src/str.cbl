@@ -1,0 +1,15 @@
+
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. STR.
+       AUTHOR. JULIAN VIDAL.
+       DATA DIVISION.
+
+       INCLUDE WS.
+
+       PROCEDURE DIVISION.
+
+           INCLUDE PROC.
+
+           STOP RUN.
+

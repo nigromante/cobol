@@ -1,0 +1,30 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    NUM2STRXTRA.
+       AUTHOR.        JULIAN VIDAL.
+
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       REPOSITORY.
+           PROGRAM libnum2fra.
+
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  NUMERO-INP  PIC 9(12) BLANK WHEN ZERO.
+       01  TEXTO-ES    PIC x(2000).
+       01  VERSION-ES  PIC X(20).
+
+
+       PROCEDURE DIVISION.
+           CALL libnum2fra.
+
+           CALL "VERSION_FR"   USING VERSION-ES.
+           DISPLAY VERSION-ES.
+
+           MOVE 123    TO NUMERO-INP.
+           CALL "CONVERT_FR"   USING NUMERO-INP TEXTO-ES.
+           DISPLAY TEXTO-ES.
+
+           STOP  RUN.
+       END PROGRAM NUM2STRXTRA.

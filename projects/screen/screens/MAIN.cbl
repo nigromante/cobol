@@ -1,0 +1,15 @@
+
+       01  MAIN-SCREEN AUTO.
+
+           05  BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 7.
+
+           05 LINE 1 COLUMN 10 BACKGROUND-COLOR 1
+               VALUE IS "TEST SCREEN ".
+
+           05 LINE 3 COLUMN 10 BACKGROUND-COLOR 1
+               PIC Z(4) 
+               USING NUMERO-INP.
+           
+           05 LINE 5 COLUMN 10 BACKGROUND-COLOR 1
+               PIC Z(4) BLANK WHEN ZERO
+               FROM NUMERO-OLD.

@@ -1,0 +1,7 @@
+           77  W302-VERSION  PIC X(20) VALUE 'NUM2ENSTR (1.0)'.
+
+      *    Textos
+           77 W302-DECENAS     OCCURS 10 TIMES PIC X(20).
+           77 W302-DECENAS-1   OCCURS 10 TIMES PIC X(20).
+           77 W302-UNIDADES    OCCURS 10  TIMES PIC X(20).
+

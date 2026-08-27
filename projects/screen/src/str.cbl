@@ -1,0 +1,32 @@
+
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. STR.
+       AUTHOR. JULIAN VIDAL.
+
+
+       DATA DIVISION.
+
+       WORKING-STORAGE SECTION.
+       77 NUMERO-INP  PIC Z(4).
+       77 NUMERO-OLD  PIC Z(4).
+
+       SCREEN SECTION.
+       INCLUDE MAIN.
+
+       PROCEDURE DIVISION.
+
+           MOVE 1 TO NUMERO-INP.
+
+           PERFORM 000-LOOP UNTIL NUMERO-INP = ' ' .
+
+           STOP RUN.
+
+       000-LOOP.
+           MOVE NUMERO-INP TO NUMERO-OLD.
+           
+           DISPLAY MAIN-SCREEN.
+           MOVE 0 TO NUMERO-INP.
+           ACCEPT MAIN-SCREEN.
+
+
